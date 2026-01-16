@@ -1,5 +1,4 @@
 *CMD
-
 cd - change dir
 ls - list files
 pwd - current working dir
@@ -49,7 +48,6 @@ uniq [file] bez duplikata
 
 
 *ACCESSIBLE DEVELOPMENT
-
 accessability tree - pregled pristupacnosti
 
 WCAG 2.0 - pristupacnost guideline
@@ -72,8 +70,16 @@ AAA:
 
 *HTML
 
-*CSS
+Forme:
+<fieldset> - grupisanje polja u formi.
+	<legend>Legenda</legend>
+</fieldset>  
 
+<label for="[ID]"> - label ide na ID!
+
+Semantic HTML:
+
+*CSS
 Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nuli.
 
 : - pseudo selektor
@@ -81,13 +87,11 @@ Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nu
 
 hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
 
-Gradient border
-
+Gradient border:
 background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
 background: linear-gradient([...]) padding-box, conic-gradient([...]) border-box - gradient border (za razliku od border image moze radius)
 
-Property primer
-
+Property primer:
 @property --angle {
   syntax: "<angle>";
   initial-value: 0turn;
@@ -100,8 +104,7 @@ Property primer
   }
 }
 
-Kul kombo
-
+Kul kombo:
 background-color,
 background-blend-mode
 
