@@ -1,0 +1,108 @@
+*CMD
+
+cd - change dir
+ls - list files
+pwd - current working dir
+
+echo - ispis
+> - new
+>> - append
+
+CLI > SHELL > OS
+
+mkdir - kreiranje foldera
+rmdir - brisanje praznog foldera
+rm -r [dir] - brisanje punog foldera
+
+find .(trenutni folder) -name (by name) 'string*'
+
+. - current dir
+.. - parent dir
+~ - home dir
+/ - root dir
+
+mv [old] [new] - rename
+   [name] [new_location] - move
+
+cp [old_name] [copy_name] - copy
+   -r - za dir
+
+grep [pattern] [file(s)] - search in file
+     'string' dir* - primer
+     -n - line number
+
+sed 's/pattern/replacement/' [file] - replace in files
+    's/,/:' - primer
+    '[...][options]'
+
+wc [file] - count words
+   -l, -w, -c, -m : options
+
+sort [file]
+     -r: obrnuto
+     -n: brojevi
+
+uniq [file] bez duplikata
+
+| - pipe character
+    [cmd1] | [cmd2]
+
+
+*ACCESSIBLE DEVELOPMENT
+
+accessability tree - pregled pristupacnosti
+
+WCAG 2.0 - pristupacnost guideline
+
+A - not
+AA - pristupacno 
+AAA - potpuno pristupacno
+
+BOJE
+Kontrast
+crna:bela = 1:21
+
+AA:
+4.5:1 - normalan tekst
+3:1 - veci tekst
+
+AAA:
+7:1 - normal
+4.5:1 - veliki tekst
+
+*HTML
+
+*CSS
+
+Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nuli.
+
+: - pseudo selektor
+:: - pseudo element
+
+hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
+
+Gradient border
+
+background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
+background: linear-gradient([...]) padding-box, conic-gradient([...]) border-box - gradient border (za razliku od border image moze radius)
+
+Property primer
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0turn;
+  inherits: true;
+} - custom vrednost koju animiramo
+
+@keyframes rotate {
+  to {
+    --angle: 1turn;
+  }
+}
+
+Kul kombo
+
+background-color,
+background-blend-mode
+
+JS
