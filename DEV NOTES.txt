@@ -77,6 +77,18 @@ Forme:
 
 <label for="[ID]"> - label ide na ID!
 
+<button type="submit">,
+<input type="submit" /> - ista stvar, button bolji za dizajn.
+
+<input type=[...] required> - mora da bude popunjen
+
+pattern="[a-zA-Z0-9]+" - za inpute regex (plus znaci da je bilo koje duzine) 
+         [a-zA-Z]{3} - 3 je zahtevani broj karaktera
+minlength="[...]" - duzina stringa input tezt
+maxlength="[...]"
+min="21" - brojevi
+max="120"
+
 Semantic HTML:
 
 *CSS
@@ -86,6 +98,7 @@ Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nu
 :: - pseudo element
 
 hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
+hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
 
 Gradient border:
 background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
