@@ -71,14 +71,18 @@ AAA:
 *HTML
 
 Forme:
-<fieldset> - grupisanje polja u formi.
+<form onsubmit="return false">
+
+<fieldset> 
 	<legend>Legenda</legend>
-</fieldset>  
+</fieldset> - grupisanje polja u formi.
 
 <label for="[ID]"> - label ide na ID!
 
-<button type="submit">,
 <input type="submit" /> - ista stvar, button bolji za dizajn.
+<button type="submit">,
+        type="reset" - reset podataka
+        type="button" - da ne bude submit u formi
 
 <input type=[...] required> - mora da bude popunjen
 
@@ -122,3 +126,15 @@ background-color,
 background-blend-mode
 
 JS
+
+Ne pravi const ako ne moras.
+innerHTML ako menjamo HTML u suprotnom innerText.
+
+
+Forme:
+loginForm.addEventListener('submit', function(e){
+    e.preventDefault() 
+}) - nema default ponasanje (ne samo za forme)
+
+const formData = new FormData(form) - form data u objektu
+formData.get([name iz inputa]) - uzimanje objekta
