@@ -163,3 +163,5 @@ emotionRadios.addEventListener('input', function(e) {
     console.log(e.target.id)
 })
 
+change - kad se izgubi fokus
+input - svaka promena
