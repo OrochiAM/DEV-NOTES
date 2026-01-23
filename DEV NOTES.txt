@@ -68,6 +68,8 @@ AAA:
 7:1 - normal
 4.5:1 - veliki tekst
 
+ARIA LABELS UMESTO DOSTA STVARI
+
 *HTML
 
 Forme:
@@ -85,6 +87,7 @@ Forme:
         type="button" - da ne bude submit u formi
 
 <input type=[...] required> - mora da bude popunjen
+                  disabled
 
 pattern="[a-zA-Z0-9]+" - za inpute regex (plus znaci da je bilo koje duzine) 
          [a-zA-Z]{3} - 3 je zahtevani broj karaktera
@@ -92,6 +95,8 @@ minlength="[...]" - duzina stringa input tezt
 maxlength="[...]"
 min="21" - brojevi
 max="120"
+
+Radio inputi isti name da imaju
 
 Semantic HTML:
 
@@ -130,6 +135,15 @@ JS
 Ne pravi const ako ne moras.
 innerHTML ako menjamo HTML u suprotnom innerText.
 
+Razliciti fajlovi: 
+export const dinnerPartyGuests = []
+import { dinnerPartyGuests } from '/data.js' (root path)
+<script src="index.js" type="module"></script>
+Modularan kod mora da bude na serveru.
+
+Loops:
+for of - elementi
+for in - indeksi
 
 Forme:
 loginForm.addEventListener('submit', function(e){
@@ -138,3 +152,10 @@ loginForm.addEventListener('submit', function(e){
 
 const formData = new FormData(form) - form data u objektu
 formData.get([name iz inputa]) - uzimanje objekta
+
+element.disabled = true / false
+
+container.classList.toggle([klasa])
+
+Eventovi:
+IMPORTANT!!! Kad se doda event listener na parenta, e.target radi i za decu.
