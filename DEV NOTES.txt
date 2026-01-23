@@ -158,4 +158,7 @@ element.disabled = true / false
 container.classList.toggle([klasa])
 
 Eventovi:
-IMPORTANT!!! Kad se doda event listener na parenta, e.target radi i za decu.
+IMPORTANT!!! Kad se doda event listener na parenta, e.target radi i za decu, radi svaki event wtf.
+emotionRadios.addEventListener('input', function(e) {
+    console.log(e.target.id)
+})
