@@ -162,3 +162,4 @@ IMPORTANT!!! Kad se doda event listener na parenta, e.target radi i za decu, rad
 emotionRadios.addEventListener('input', function(e) {
     console.log(e.target.id)
 })
+
