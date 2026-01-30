@@ -130,6 +130,7 @@ Kul kombo:
 background-color,
 background-blend-mode
 
+inset shorthand za position.
 JS
 
 Ne pravi const ako ne moras.
