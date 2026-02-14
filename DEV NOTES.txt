@@ -132,6 +132,8 @@ background-blend-mode
 
 inset shorthand za position.
 
+corner-shape (za sada samo chrome)
+
 JS
 
 Ne pravi const ako ne moras.
