@@ -134,6 +134,8 @@ inset shorthand za position.
 
 corner-shape (za sada samo chrome)
 
+accent-color
+ 
 JS
 
 Ne pravi const ako ne moras.
@@ -169,3 +171,5 @@ emotionRadios.addEventListener('input', function(e) {
 
 change - kad se izgubi fokus
 input - svaka promena
+
+getElementsByClassName vraca HTMLCollection (automatski se menja kad se dom menja)
