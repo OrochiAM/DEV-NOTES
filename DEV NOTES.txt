@@ -96,8 +96,10 @@ maxlength="[...]"
 min="21" - brojevi
 max="120"
 
-Radio inputi isti name da imaju
+Radio inputi isti name da imaju, i checkbox-ovi
 
+<select id="superpowers" multiple size="67">
+  <optgroup label="????">
 Semantic HTML:
 
 *CSS
@@ -163,6 +165,10 @@ element.disabled = true / false
 
 container.classList.toggle([klasa])
 
+Radio button vrednost najbolje dobiti preko querySelectora (input[type="radio"]:checked), checkbox takodje.
+
+Checkbox.checked 
+
 Eventovi:
 IMPORTANT!!! Kad se doda event listener na parenta, e.target radi i za decu, radi svaki event wtf.
 emotionRadios.addEventListener('input', function(e) {
@@ -173,3 +179,9 @@ change - kad se izgubi fokus
 input - svaka promena
 
 getElementsByClassName vraca HTMLCollection (automatski se menja kad se dom menja)
+
+Funkcije 
+.filter(OVDE IDE FUNKCIJA CUSTOM FILTER EZ)
+
+.includes za proveru NE CONTAINS
+
