@@ -183,5 +183,12 @@ getElementsByClassName vraca HTMLCollection (automatski se menja kad se dom menj
 Funkcije 
 .filter(OVDE IDE FUNKCIJA CUSTOM FILTER EZ)
 
-.includes za proveru NE CONTAINS
+.includes - za proveru NE CONTAINS
+
+.forEach(index) - radi nesto na svakom elementu, index vraca index u nizu
+
+*RANDOM
+
+CDN - Content Delivery Network
+lista cdn-a - https://cdnjs.com/
 
