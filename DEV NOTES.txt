@@ -72,6 +72,9 @@ ARIA LABELS UMESTO DOSTA STVARI
 
 *HTML
 
+Data attribute
+data-[naziv]="podaci"
+
 Forme:
 <form onsubmit="return false">
 
@@ -182,6 +185,7 @@ getElementsByClassName vraca HTMLCollection (automatski se menja kad se dom menj
 
 Funkcije 
 .filter(OVDE IDE FUNKCIJA CUSTOM FILTER EZ)
+filter vraca niz
 
 .includes - za proveru NE CONTAINS
 
@@ -192,3 +196,9 @@ Funkcije
 CDN - Content Delivery Network
 lista cdn-a - https://cdnjs.com/
 
+Data Attribute
+[element].dataset.[naziv]
+KORISTI CAMEL CASE IAKO SU CRTICE U HTMLU
+
+Shallow Copy - kreirana kopija niza ili objekta niza menja originalni niz
+Deep Copy - ne menja.
