@@ -145,10 +145,19 @@ JS
 
 Ne pravi const ako ne moras.
 innerHTML ako menjamo HTML u suprotnom innerText.
+(innerHTML moze da bude opasan, html injection)
 
 Razliciti fajlovi: 
 export const dinnerPartyGuests = []
+export { interplanetaryDestinationsArr, shortSpaceTripsArr }
+
 import { dinnerPartyGuests } from '/data.js' (root path)
+import { interplanetaryDestinationsArr as destinations } from '/data.js'
+imenovani import
+
+import { interplanetaryDestinationsArr as destinations, shortSpaceTripsArr } from '/data.js'
+zarezom se mogu vise stvari importovati
+
 <script src="index.js" type="module"></script>
 Modularan kod mora da bude na serveru.
 
@@ -189,7 +198,13 @@ filter vraca niz
 
 .includes - za proveru NE CONTAINS
 
-.forEach(index) - radi nesto na svakom elementu, index vraca index u nizu
+.forEach(f-ja, index) - radi nesto na svakom elementu, index vraca index u nizu
+
+.map(f-ja, index) - menja svaki element po f-ji
+*forEach ne vraca novi niz, map vraca
+
+.join('[SEPARATOR]')
+
 
 *RANDOM
 
@@ -202,3 +217,12 @@ KORISTI CAMEL CASE IAKO SU CRTICE U HTMLU
 
 Shallow Copy - kreirana kopija niza ili objekta niza menja originalni niz
 Deep Copy - ne menja.
+
+Object Destructuring
+const {title, year, genre, star, director} = favouriteFilm
+
+Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
+
+Function expression (Ne hoistuje se, to je prednost)
+
+One grane koje nemaju return u funkciji vracaju undefined.
