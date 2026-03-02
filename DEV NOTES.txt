@@ -150,6 +150,7 @@ innerHTML ako menjamo HTML u suprotnom innerText.
 Razliciti fajlovi: 
 export const dinnerPartyGuests = []
 export { interplanetaryDestinationsArr, shortSpaceTripsArr }
+export default [...], moze da se importuje pod bilo kojim imenom (samo jedan po fajlu)
 
 import { dinnerPartyGuests } from '/data.js' (root path)
 import { interplanetaryDestinationsArr as destinations } from '/data.js'
@@ -203,8 +204,23 @@ filter vraca niz
 .map(f-ja, index) - menja svaki element po f-ji
 *forEach ne vraca novi niz, map vraca
 
-.join('[SEPARATOR]')
+.join('[SEPARATOR]') - spaja elemente niza
 
+.reduce() - vraca samo jedan element
+
+const rainJanuaryByWeek = [ 10, 20, 0, 122 ]
+
+const totalRainfallJanuary = rainJanuaryByWeek.reduce((total, currentElement) => total + currentElement)
+.reduce((total, currentElement => total + currentElement), 0)  - inicijalna vrednost total
+
+Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
+
+Function expression (Ne hoistuje se, to je prednost)
+
+One grane koje nemaju return u funkciji vracaju undefined.
+
+Default parametri:
+function calculateTotalCost(itemsBoughtArr, discount=0) - ako se ne da vrednost defaultu, postavlja se na nula
 
 *RANDOM
 
@@ -221,8 +237,3 @@ Deep Copy - ne menja.
 Object Destructuring
 const {title, year, genre, star, director} = favouriteFilm
 
-Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
-
-Function expression (Ne hoistuje se, to je prednost)
-
-One grane koje nemaju return u funkciji vracaju undefined.
