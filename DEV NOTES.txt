@@ -141,6 +141,8 @@ corner-shape (za sada samo chrome)
 
 accent-color
  
+Responsive
+
 JS
 
 Ne pravi const ako ne moras.
@@ -222,7 +224,103 @@ One grane koje nemaju return u funkciji vracaju undefined.
 Default parametri:
 function calculateTotalCost(itemsBoughtArr, discount=0) - ako se ne da vrednost defaultu, postavlja se na nula
 
-*RANDOM
+Rest parametar
+function setPermissionLevel(permissionLevel, ...names) {[...]}
+setPermissionLevel('admin', 'Dave', 'Sally')
+
+
+OOP JS
+
+Objekti sa metodama
+const gamer = {
+    name: 'Dave',
+    score: 0,
+    incrementScore: function(){
+        this.score++   
+    }
+}
+
+Konstruktor Funkcije
+
+function Gamer(name){
+    this.name = name
+    this.score = 0
+    this.incrementScore = function(){
+        this.score++  
+    }
+}
+
+Klase 
+
+class Gamer {
+    constructor(name, score) {
+        this.name = name
+        this.score = score
+    }
+    
+    incrementScore() {
+        this.score++  
+    }
+}
+
+Try Catch
+    try {
+        if (typeof payment === 'number') {
+            console.log(payment + 10)
+        } else {
+            throw new ReferenceError('payment is not a number')
+        }
+    } catch (err) {
+        console.error('Error: ' + err)
+    }
+
+Switch
+
+switch(item) {
+    case 'coffee':
+        price = 2
+        break
+    case 'sandwiches':
+        price = 5
+        break    
+    default:
+        return `Sorry, we don't sell ${item}`         
+}
+
+break ne ide posle poslednjeg itema u switchu, switch poredi sa ===
+
+Datumi
+const dateSnapshot = new Date()
+console.log(dateSnapshot.toString())
+
+getFullYear() -> 2026
+getYear() -> 26
+
+Error konstruktor
+throw new Error('No username provided')
+console.log(new Error('No username provided'))
+
+Spread operator
+...[nazivNiza] - vraca sve elemente niza
+Koristi se kod Math.max i min
+
+Short Circuiting
+
+OR
+const jobHunter = {
+    name: 'Tom Chant',
+    jobSearchArea: 'Europe',
+}
+const workLocation = jobHunter.jobSearchArea || 'Worldwide'
+console.log(`${jobHunter.name}'s work location is ${workLocation}`)
+
+AND 
+const user = {
+    userName: 'Tom',
+    role: 'admin',
+}
+
+user.role === 'admin' && console.log('Dashboard Displayed')
 
 CDN - Content Delivery Network
 lista cdn-a - https://cdnjs.com/
