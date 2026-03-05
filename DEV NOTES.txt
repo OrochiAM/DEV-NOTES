@@ -141,7 +141,12 @@ corner-shape (za sada samo chrome)
 
 accent-color
  
-Responsive
+Responsive Design
+
+Relative Units
+
+% - procenat na osnovu roditelja
+width override-uje display block
 
 JS
 
