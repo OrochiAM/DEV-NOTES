@@ -107,6 +107,7 @@ Semantic HTML:
 
 *CSS
 Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nuli.
+Margin auto radi samo sa display block, slike imaju display inline.
 
 : - pseudo selektor
 :: - pseudo element
@@ -147,6 +148,24 @@ Relative Units
 
 % - procenat na osnovu roditelja
 width override-uje display block
+
+em  
+FONTOVI - vrednost u odnosu na velicinu fonta roditelja ili najblizeg rodjaka sa definisanim font size-om (1em - velicina roditelja da prostis)
+MARGINE PADDING - u odnosu na velicinu fonta elementa na koji se postavljaju
+
+rem - root em, uvek u odnosu na root
+
+Kada sta koristiti?
+
+Font - rem
+Margine i Padding - em
+max-width - px
+
+line-height 
+1.5 veci od velicine fonta
+koristi unitless vrednosti
+line-height: 1.5;
+
 
 JS
 
