@@ -142,6 +142,11 @@ corner-shape (za sada samo chrome)
 
 accent-color
  
+inline elementi nemaju padding i margine
+
+Slike - block
+Link - inline
+
 Responsive Design
 
 Relative Units
@@ -161,11 +166,37 @@ Font - rem
 Margine i Padding - em
 max-width - px
 
-line-height 
+line-height:
 1.5 veci od velicine fonta
 koristi unitless vrednosti
 line-height: 1.5;
 
+Media Query:
+@media (max-width: 499px) {
+    [...]
+}
+
+Mobile First:
+Slike su block!!!
+Koristi display: block;
+
+Common Breakpoints:
+480px - telefoni
+768px - tableti
+1024px - laptopovi, manji racunari
+1280px - racunari
+
+na telefonu se bez meta taga renderuje odzumiran desktop
+
+vw za scalable text
+
+Flex
+
+flex-basis: 200px; - koliko treba da rastu elementi
+flex-grow: 1;
+flex: 1 220px; - shorthand
+
+Odvoji sve flex containere na pocetku
 
 JS
 
@@ -251,7 +282,6 @@ function calculateTotalCost(itemsBoughtArr, discount=0) - ako se ne da vrednost 
 Rest parametar
 function setPermissionLevel(permissionLevel, ...names) {[...]}
 setPermissionLevel('admin', 'Dave', 'Sally')
-
 
 OOP JS
 
