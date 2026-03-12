@@ -76,6 +76,7 @@ Data attribute
 data-[naziv]="podaci"
 
 Forme:
+
 <form onsubmit="return false">
 
 <fieldset> 
@@ -98,6 +99,8 @@ minlength="[...]" - duzina stringa input tezt
 maxlength="[...]"
 min="21" - brojevi
 max="120"
+
+<input type="file" required accept="image/png, image/jpg" aria-label="Choose file">
 
 Radio inputi isti name da imaju, i checkbox-ovi
 
@@ -147,6 +150,11 @@ inline elementi nemaju padding i margine
 Slike - block
 Link - inline
 
+FORM ELEMENTI NE NASLEDJUJU FONT
+font-family: inherit;
+
+margine na tekstu sklanjaju display block ako je fleks element
+
 Responsive Design
 
 Relative Units
@@ -192,11 +200,14 @@ vw za scalable text
 
 Flex
 
+Na element
 flex-basis: 200px; - koliko treba da rastu elementi
 flex-grow: 1;
 flex: 1 220px; - shorthand
+order: -1(first) 1(last);
 
 Odvoji sve flex containere na pocetku
+
 
 JS
 
