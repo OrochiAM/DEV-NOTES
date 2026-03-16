@@ -72,6 +72,8 @@ ARIA LABELS UMESTO DOSTA STVARI
 
 *HTML
 
+ide h1 h2... ne preskaci
+
 Data attribute
 data-[naziv]="podaci"
 
@@ -106,6 +108,7 @@ Radio inputi isti name da imaju, i checkbox-ovi
 
 <select id="superpowers" multiple size="67">
   <optgroup label="????">
+
 Semantic HTML:
 
 *CSS
@@ -198,6 +201,7 @@ na telefonu se bez meta taga renderuje odzumiran desktop
 
 vw za scalable text
 
+(kod flex i kod grid margine ne collapsuju)
 Flex
 
 Na element
@@ -208,6 +212,45 @@ order: -1(first) 1(last);
 
 Odvoji sve flex containere na pocetku
 
+Grid
+display: grid;
+
+grid-template-columns: 5em 1fr auto repeat(7, 1fr);
+grid-template: 1fr 3fr 1fr / 1fr 2fr;
+grid-column: span 2;
+
+row-gap: .3em;
+column-gap: .6em;
+gap: .3em .6em;
+
+12 column grid
+
+grid-column: 1 / 13;
+grid-column: 1 / -1 (uvek do kraja);
+grid-column: 3 / span 7;
+grid-column-start: 1;
+grid-column-end: 13;
+
+grid-area: main;
+
+grid-template-areas: 
+        "head head head head head head head head head head head head"
+        "nav nav main main main main main main main aside aside aside"
+        "nav nav main main main main main main main aside aside aside"
+        "nav nav main main main main main main main aside aside aside"
+        "foot foot foot foot foot foot foot foot foot foot foot foot";
+        .... - jedan element u grid area
+
+source order independence 
+
+grid-auto-rows: 75px;
+
+grid-auto-flow: dense; nestaje prazan prostor u gridu
+
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); - ne idu ispod 100px, i ne preko 1fr
+grid-template-columns: repeat(9, 1fr) repeat(3, minmax(70px, 1fr));
+
+place-items: center; - centrira sve u gridu 
 
 JS
 
@@ -400,3 +443,4 @@ Deep Copy - ne menja.
 Object Destructuring
 const {title, year, genre, star, director} = favouriteFilm
 
+APIs, Async
