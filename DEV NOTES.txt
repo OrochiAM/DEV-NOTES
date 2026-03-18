@@ -70,6 +70,11 @@ AAA:
 
 ARIA LABELS UMESTO DOSTA STVARI
 
+aria-live="polite..." - ako se menja dinamicki kroz JS
+
+h1-h6 samo za naslove koji oznacavaju deo sajta
+p za drugi tekst 
+
 *HTML
 
 ide h1 h2... ne preskaci
@@ -317,11 +322,11 @@ filter vraca niz
 
 .join('[SEPARATOR]') - spaja elemente niza
 
-.reduce() - vraca samo jedan element
+.reduce() - vraca samo jedan element (izvrsava callback funkciju)
 
 const rainJanuaryByWeek = [ 10, 20, 0, 122 ]
 
-const totalRainfallJanuary = rainJanuaryByWeek.reduce((total, currentElement) => total + currentElement)
+const totalRainfallJanuary = rainJanuaryByWeek.reduce((total(callback), currentElement) => total + currentElement)
 .reduce((total, currentElement => total + currentElement), 0)  - inicijalna vrednost total
 
 Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
@@ -444,3 +449,22 @@ Object Destructuring
 const {title, year, genre, star, director} = favouriteFilm
 
 APIs, Async
+
+API - nacin da se povezemo sa drugim programom
+
+Client / Server
+
+Request Response Cycle
+
+Internal error: 500
+Forbidden: 403
+Not Found: 404
+
+XHR (XMLHttpRequest) - JSON AJAX Request
+
+Fetch
+
+fetch('https://dog.ceo/api/breeds/image/random')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
