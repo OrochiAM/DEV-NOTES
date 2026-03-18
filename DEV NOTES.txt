@@ -283,6 +283,8 @@ for of - elementi
 for in - indeksi
 
 Forme:
+form.reset()
+
 loginForm.addEventListener('submit', function(e){
     e.preventDefault() 
 }) - nema default ponasanje (ne samo za forme)
@@ -321,6 +323,8 @@ filter vraca niz
 *forEach ne vraca novi niz, map vraca
 
 .join('[SEPARATOR]') - spaja elemente niza
+
+.slice() - vraca deo niza
 
 .reduce() - vraca samo jedan element (izvrsava callback funkciju)
 
@@ -455,6 +459,8 @@ API - nacin da se povezemo sa drugim programom
 Client / Server
 
 Request Response Cycle
+Client trazi -> Server vraca response (nekad radi nekad ne, ali je svakako response)
+Response Timeout - nema responsa
 
 Internal error: 500
 Forbidden: 403
@@ -468,3 +474,52 @@ fetch('https://dog.ceo/api/breeds/image/random')
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Error:', error));
+
+HTTP Request
+
+Komponente:
+1. Path(URL)
+2. Method(GET, POST, PUT, DELETE, DRUGE(PATCH, OPTIONS))
+3. Body(Opciono)
+4. Headers(Metapodaci o requestu(npr tip browsera), ima ih mnogo)
+
+https:// - scheme
+
+Path
+gde zivi resurs
+BaseURL - deo URL-a koji se ne menja
+Endpoint - deo koji se menja
+
+Svaki klik na link je GET request
+
+Methods
+GET - get data
+POST - send new data (ne vraca podatke)
+PUT - modifikacija postojecih podataka (update)
+DELETE - samoobjasnjivo
+
+fetch po defaultu radi GET
+fetch("https://apis.scrimba.com/jsonplaceholder/todos", {method: "POST", body})
+
+za POST i PUT podaci koji se salju moraju da budu u json formatu.
+
+fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
+    method: "POST",
+    body: JSON.stringify({
+        title: "Buy Milk",
+        completed: false
+    })
+})
+
+Headers
+
+fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        title: "Buy Milk",
+        completed: false
+    })
+})
