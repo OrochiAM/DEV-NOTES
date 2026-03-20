@@ -153,6 +153,13 @@ corner-shape (za sada samo chrome)
 
 accent-color
  
+!! MOZILA SAMO
+contrast-color([boja]); - vraca ili belu ili crnu na osnovu lightnessa pozadine
+
+oklch(from var(--bg) round(1.21 - L) 0 0) - isto samo sto radi na chromeu
+
+.hex-text:hover::before
+
 inline elementi nemaju padding i margine
 
 Slike - block
@@ -332,6 +339,8 @@ const rainJanuaryByWeek = [ 10, 20, 0, 122 ]
 
 const totalRainfallJanuary = rainJanuaryByWeek.reduce((total(callback), currentElement) => total + currentElement)
 .reduce((total, currentElement => total + currentElement), 0)  - inicijalna vrednost total
+
+.children - vraca svu decu
 
 Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
 
@@ -523,3 +532,89 @@ fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
         completed: false
     })
 })
+
+REST 
+Representational State Transfer
+
+Design pattern za komunikaciju klijenta i servera.
+
+Principi:
+Separation of Client and Server, server vraca JSON podatke i nije ga briga kako ga koristi klijent. (server ne renderuje)
+
+Statelessness, kada klijent napravi request, ne cuva se u memoriji (zaboravi ga), ako klijentu trebaju te informacije uvek treba sve slati.
+
+Accessing Resources - koriscenje standardizovanih URL endpointa
+
+/bikes endpoint imenica -> vraca se i postavlja se niz objekata tipa imenice (GET, POST)
+
+/bikes/:id (/bikes/id) -> specifican objekat (GET, PUT, DELETE)
+:id - URL parametar 
+
+Nested
+/bikes/:id/reviews -> vraca niz review-ova za bike id
+/reviews - nested resource
+
+Primer
+fetch("https://apis.scrimba.com/jsonplaceholder/posts/2/comments")
+    .then(res => res.json())
+    .then(data => console.log(data))
+
+Query Strings (Negde query parametri)
+filtriranje rezultata kroz REST
+razliciti api-i drugacije implementiraju stvari
+
+/bikes/?type=mountain
+/bikes/?type=mountain&brand=trek
+
+mogu i da se koriste za podesvanje podataka
+/weather?q=salt lake city&units=metric
+
+ASYNC JS
+Sinhroni JS - komanda mora da se zavrsi da bi druga zapocela, ne mogu dve u isto vreme
+Asinhroni JS - suprotno od sinhronog
+
+JS nije stvarno async, ne koristi niti, ima callback mehanizme
+
+Funkcije su first class objekti u JS-u
+Callback f-je su f-je koje prosledjuju drugoj f-ji kao parametar, recimo kao kod addEventListener, setTimeout, filter... (bez zagrada)
+
+function gimmeThePets(number) {
+    return person.hasPet
+}
+
+const peopleWithPets = people.filter(gimmeThePets)
+
+function filterArray(array, callback) {
+    const resultingArray = []
+  
+    for (let item of array) {
+        const shouldBeIncluded = callback(item)
+        if (shouldBeIncluded) {
+            resultingArray.push(item)
+        }
+    }
+    return resultingArray
+}
+
+fetch da koristi callback f-je umesto promisa
+
+fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/", function(response){
+        response.json(function(data) {
+            console.log(data)
+            // Do cool stuff with the data here
+        })
+    })
+
+Promises
+
+State-ovi promise-a:
+
+1.Pending, nije gotov
+2.Fulfilled, gotov u vremenskom roku
+3.Rejected, nije se zavrsio u vremenskom roku
+
+.then(f-ja) - promise
+
+Promise chaining
+
+.then uzima callback f-ju i runnuje je kad je promise u fulfilled state-u
