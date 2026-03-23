@@ -123,6 +123,8 @@ Margin auto radi samo sa display block, slike imaju display inline.
 : - pseudo selektor
 :: - pseudo element
 
+button:disabled
+
 hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
 hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
 
@@ -618,3 +620,24 @@ State-ovi promise-a:
 Promise chaining
 
 .then uzima callback f-ju i runnuje je kad je promise u fulfilled state-u
+
+Async / Await
+
+Dodato u ES8 2017.
+
+Nacin da asinhroni kod izgleda sinhrono.
+
+async pre f-je
+await ide pre f-je koja vraca promise
+
+sada rezultat fetch-a moze da se stavi u promenljivu, to bez async nije moglo, jer vraca promise.
+
+async function handleClick() {
+    const res = await fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    const data = await res.json()
+    remainingText.textContent = `Remaining cards: ${data.remaining}`
+    deckId = data.deck_id
+    console.log(deckId)
+}
+
+async () => {} - async arrow f-ja
