@@ -427,6 +427,7 @@ getYear() -> 26
 Error konstruktor
 throw new Error('No username provided')
 console.log(new Error('No username provided'))
+throw Error("This is an error") - bez new
 
 Spread operator
 ...[nazivNiza] - vraca sve elemente niza
@@ -609,6 +610,8 @@ fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/", function(res
 
 Promises
 
+Promise je buduca vrednost async f-je
+
 State-ovi promise-a:
 
 1.Pending, nije gotov
@@ -629,6 +632,7 @@ Nacin da asinhroni kod izgleda sinhrono.
 
 async pre f-je
 await ide pre f-je koja vraca promise
+await postoji samo u async f-ji
 
 sada rezultat fetch-a moze da se stavi u promenljivu, to bez async nije moglo, jer vraca promise.
 
@@ -641,3 +645,26 @@ async function handleClick() {
 }
 
 async () => {} - async arrow f-ja
+
+Promise Rejection
+
+.catch(err => {GRESKA HANDLING})
+
+greska zavisi od API-a
+
+res.status
+res.ok - da li je dobijen podatak ok
+
+https://httpstat.us/200 - api za dobijanje statusa
+
+200-300 OK
+400-500 NOT OK
+
+ if (!res.ok) {
+    throw Error("Something went")
+}
+
+dobijanje lokacije lat i long
+navigator.geolocation.getCurrentPosition((position) => {
+  doSomething(position.coords.latitude, position.coords.longitude);
+});
