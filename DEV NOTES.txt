@@ -172,6 +172,8 @@ font-family: inherit;
 
 margine na tekstu sklanjaju display block ako je fleks element
 
+Vendor prefixes -webkit, -moz, se ne koristi vise.
+
 Responsive Design
 
 Relative Units
@@ -634,6 +636,9 @@ async pre f-je
 await ide pre f-je koja vraca promise
 await postoji samo u async f-ji
 
+Ako je tip fajla modul async await moze i u top levelu da se pise
+odmah await fetch ne mora u f-ji
+
 sada rezultat fetch-a moze da se stavi u promenljivu, to bez async nije moglo, jer vraca promise.
 
 async function handleClick() {
@@ -649,6 +654,8 @@ async () => {} - async arrow f-ja
 Promise Rejection
 
 .catch(err => {GRESKA HANDLING})
+
+ako koristimo async await koristimo try catch
 
 greska zavisi od API-a
 
@@ -668,3 +675,9 @@ dobijanje lokacije lat i long
 navigator.geolocation.getCurrentPosition((position) => {
   doSomething(position.coords.latitude, position.coords.longitude);
 });
+
+Node.js
+
+Node nije jezik, vec okruzenje
+
+content type - header
