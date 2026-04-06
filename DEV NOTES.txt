@@ -680,4 +680,16 @@ Node.js
 
 Node nije jezik, vec okruzenje
 
-content type - header
+content type - header4
+
+Node nema pristup document-u ali ima REPL-u (read, evaluate, print, loop), omogucava nam da pisemo JS u konzoli
+
+pokrece se komandom node
+
+ctrl c x 2 da se izadje
+
+package.json - osnova node projekta, sadrzi metapodatke o podatku
+
+kreira se komandom npm init
+
+u package jsonu se nalazi start metodama, tako da se pokrece sa npm start a ne node server.js
