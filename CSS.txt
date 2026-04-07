@@ -1,0 +1,151 @@
+*CSS
+Position fixed sa margin centriranjem mora da ima top, right, bottom, left na nuli.
+Margin auto radi samo sa display block, slike imaju display inline.
+
+: - pseudo selektor
+:: - pseudo element
+
+button:disabled
+
+hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
+hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
+
+Gradient border:
+background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
+background: linear-gradient([...]) padding-box, conic-gradient([...]) border-box - gradient border (za razliku od border image moze radius)
+
+Property primer:
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0turn;
+  inherits: true;
+} - custom vrednost koju animiramo
+
+@keyframes rotate {
+  to {
+    --angle: 1turn;
+  }
+}
+
+Kul kombo:
+background-color,
+background-blend-mode
+
+inset shorthand za position.
+
+corner-shape (za sada samo chrome)
+
+accent-color
+ 
+!! MOZILA SAMO
+contrast-color([boja]); - vraca ili belu ili crnu na osnovu lightnessa pozadine
+
+oklch(from var(--bg) round(1.21 - L) 0 0) - isto samo sto radi na chromeu
+
+.hex-text:hover::before
+
+inline elementi nemaju padding i margine
+
+Slike - block
+Link - inline
+
+FORM ELEMENTI NE NASLEDJUJU FONT
+font-family: inherit;
+
+margine na tekstu sklanjaju display block ako je fleks element
+
+Vendor prefixes -webkit, -moz, se ne koristi vise.
+
+Responsive Design
+
+Relative Units
+
+% - procenat na osnovu roditelja
+width override-uje display block
+
+em  
+FONTOVI - vrednost u odnosu na velicinu fonta roditelja ili najblizeg rodjaka sa definisanim font size-om (1em - velicina roditelja da prostis)
+MARGINE PADDING - u odnosu na velicinu fonta elementa na koji se postavljaju
+
+rem - root em, uvek u odnosu na root
+
+Kada sta koristiti?
+
+Font - rem
+Margine i Padding - em
+max-width - px
+
+line-height:
+1.5 veci od velicine fonta
+koristi unitless vrednosti
+line-height: 1.5;
+
+Media Query:
+@media (max-width: 499px) {
+    [...]
+}
+
+Mobile First:
+Slike su block!!!
+Koristi display: block;
+
+Common Breakpoints:
+480px - telefoni
+768px - tableti
+1024px - laptopovi, manji racunari
+1280px - racunari
+
+na telefonu se bez meta taga renderuje odzumiran desktop
+
+vw za scalable text
+
+(kod flex i kod grid margine ne collapsuju)
+Flex
+
+Na element
+flex-basis: 200px; - koliko treba da rastu elementi
+flex-grow: 1;
+flex: 1 220px; - shorthand
+order: -1(first) 1(last);
+
+Odvoji sve flex containere na pocetku
+
+Grid
+display: grid;
+
+grid-template-columns: 5em 1fr auto repeat(7, 1fr);
+grid-template: 1fr 3fr 1fr / 1fr 2fr;
+grid-column: span 2;
+
+row-gap: .3em;
+column-gap: .6em;
+gap: .3em .6em;
+
+12 column grid
+
+grid-column: 1 / 13;
+grid-column: 1 / -1 (uvek do kraja);
+grid-column: 3 / span 7;
+grid-column-start: 1;
+grid-column-end: 13;
+
+grid-area: main;
+
+grid-template-areas: 
+        "head head head head head head head head head head head head"
+        "nav nav main main main main main main main aside aside aside"
+        "nav nav main main main main main main main aside aside aside"
+        "nav nav main main main main main main main aside aside aside"
+        "foot foot foot foot foot foot foot foot foot foot foot foot";
+        .... - jedan element u grid area
+
+source order independence 
+
+grid-auto-rows: 75px;
+
+grid-auto-flow: dense; nestaje prazan prostor u gridu
+
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); - ne idu ispod 100px, i ne preko 1fr
+grid-template-columns: repeat(9, 1fr) repeat(3, minmax(70px, 1fr));
+
+place-items: center; - centrira sve u gridu 

@@ -1,0 +1,40 @@
+*HTML
+
+ide h1 h2... ne preskaci
+
+Data attribute
+data-[naziv]="podaci"
+
+Forme:
+
+<form onsubmit="return false">
+
+<fieldset> 
+	<legend>Legenda</legend>
+</fieldset> - grupisanje polja u formi.
+
+<label for="[ID]"> - label ide na ID!
+
+<input type="submit" /> - ista stvar, button bolji za dizajn.
+<button type="submit">,
+        type="reset" - reset podataka
+        type="button" - da ne bude submit u formi
+
+<input type=[...] required> - mora da bude popunjen
+                  disabled
+
+pattern="[a-zA-Z0-9]+" - za inpute regex (plus znaci da je bilo koje duzine) 
+         [a-zA-Z]{3} - 3 je zahtevani broj karaktera
+minlength="[...]" - duzina stringa input tezt
+maxlength="[...]"
+min="21" - brojevi
+max="120"
+
+<input type="file" required accept="image/png, image/jpg" aria-label="Choose file">
+
+Radio inputi isti name da imaju, i checkbox-ovi
+
+<select id="superpowers" multiple size="67">
+  <optgroup label="????">
+
+Semantic HTML:

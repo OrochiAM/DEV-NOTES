@@ -1,0 +1,47 @@
+*CMD
+cd - change dir
+ls - list files
+pwd - current working dir
+
+echo - ispis
+> - new
+>> - append
+
+CLI > SHELL > OS
+
+mkdir - kreiranje foldera
+rmdir - brisanje praznog foldera
+rm -r [dir] - brisanje punog foldera
+
+find .(trenutni folder) -name (by name) 'string*'
+
+. - current dir
+.. - parent dir
+~ - home dir
+/ - root dir
+
+mv [old] [new] - rename
+   [name] [new_location] - move
+
+cp [old_name] [copy_name] - copy
+   -r - za dir
+
+grep [pattern] [file(s)] - search in file
+     'string' dir* - primer
+     -n - line number
+
+sed 's/pattern/replacement/' [file] - replace in files
+    's/,/:' - primer
+    '[...][options]'
+
+wc [file] - count words
+   -l, -w, -c, -m : options
+
+sort [file]
+     -r: obrnuto
+     -n: brojevi
+
+uniq [file] bez duplikata
+
+| - pipe character
+    [cmd1] | [cmd2]

@@ -1,0 +1,27 @@
+*ACCESSIBLE DEVELOPMENT
+accessability tree - pregled pristupacnosti
+
+WCAG 2.0 - pristupacnost guideline
+
+A - not
+AA - pristupacno 
+AAA - potpuno pristupacno
+
+BOJE
+Kontrast
+crna:bela = 1:21
+
+AA:
+4.5:1 - normalan tekst
+3:1 - veci tekst
+
+AAA:
+7:1 - normal
+4.5:1 - veliki tekst
+
+ARIA LABELS UMESTO DOSTA STVARI
+
+aria-live="polite..." - ako se menja dinamicki kroz JS
+
+h1-h6 samo za naslove koji oznacavaju deo sajta
+p za drugi tekst 
