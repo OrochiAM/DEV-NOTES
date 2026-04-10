@@ -4,10 +4,15 @@ Ne pravi const ako ne moras.
 innerHTML ako menjamo HTML u suprotnom innerText.
 (innerHTML moze da bude opasan, html injection)
 
+Objects
+destination[locationToCheck] - i ovako moze da se pristupi nizu objekata
+
 Razliciti fajlovi: 
 export const dinnerPartyGuests = []
 export { interplanetaryDestinationsArr, shortSpaceTripsArr }
 export default [...], moze da se importuje pod bilo kojim imenom (samo jedan po fajlu)
+
+import bez vijudavih zastava kada ne importujemo metode
 
 import { dinnerPartyGuests } from '/data.js' (root path)
 import { interplanetaryDestinationsArr as destinations } from '/data.js'

@@ -18,8 +18,65 @@ u package jsonu se nalazi start metodama, tako da se pokrece sa npm start a ne n
 
 "type": "module" - u package.json da mogu da se importuju node moduli
 
-import http from 'node:http' - ovako sa node: pa ime
-
 HTTP Modul
 
-const server = http.createServer()
+import http from 'node:http' - ovako sa node: pa ime
+import bez vijudavih zastava kada ne importujemo metode
+
+const PORT = 8000 - broj porta
+
+const server = http.createServer((req, res) => {
+  res.write('This is some more data \n') - samo ispisuje ne zavrsava
+  res.end('This is from the server', 'utf8', ()=> console.log('response end')) - slanje i zavrsavanje responsea
+})
+
+server.listen(PORT, () => console.log(`server running on port: ${PORT}`))
+
+REQUEST RESPONSE CYCLE
+1. Pocinje sa klijentom koji salje request koji sadrzi: metodu(GET), url(/api), podatke(path params)
+2. Server handleuje request: filteruje podatke, baca greske, generise response
+3. Response se salje klijentu i sadrzi: resurs, content type, status code, status message
+
+Request Object (req u kodu) daje pristup requestu i sadrzi:
+1. url
+2. headere
+3. podatke
+4. metodu
+
+HTTP radi samo sa tekstom
+
+JSON.stringify(), .parse() - ako hocemo json
+
+Content Types (Mime types) Multipurpose Internet Mail Extensions 
+
+1. application/json
+2. text/html
+3. text/class
+4. application/javascript
+...
+
+req.url - tipa /api
+req.method - recimo GET
+
+res.write()
+res.end()
+res.setHeader('Header', 'Vrednost') -> recimo ('Content-Type', 'text/html')
+res.statusCode = 500, recimo
+
+const urlObj = new URL(req.url, `http://${req.headers.host}`) - kreira url objekat, odavde se mogu uzeti searvh parametri
+
+const queryObj = Object.fromEntries(urlObj.searchParams)
+
+req.headers.host - iz headera vraca base url
+
+SAME ORIGIN POLICY
+
+isti protokol isti port da bi slanje radilo
+
+CORS
+
+Cross Origin Resource Sharing - bavi se overridovanjem prethodno pomenutog
+dozvoljava poznate korisnike naseg api-a
+
+res.setHeader('Access-Control-Allow-Origin', '*')
+res.setHeader('Access-Control-Allow-Methods', 'GET')
