@@ -80,3 +80,68 @@ dozvoljava poznate korisnike naseg api-a
 
 res.setHeader('Access-Control-Allow-Origin', '*')
 res.setHeader('Access-Control-Allow-Methods', 'GET')
+
+res.writeHead(200, {'Content-Type': 'text/html'}) - postavlja headere i status code
+
+setHeader ne salje response, dok writeHead odmah salje, i ne moze da se menja u toku rada
+
+writeHead overuluje setHeader
+
+Routing
+
+Mora da se zna direktorijum i putanja do resursa, da bi se korisniku dao odgovarajuci resurs
+
+OS agnostic, radi na svakom OS-u
+
+imoport.meta - podaci o modulu
+
+const __dirname = import.meta.dirname - direktorijum gde je server
+
+Path module
+
+onsole.log('CWD', process.cwd()) - current working directory
+
+import path from 'node:path'
+
+const pathToResource = path.join(__dirname, 'public', 'index.html') path nezavisan od OS-a
+const relPathToResource = path.join('public', 'index.html') - relative path
+
+const ext = path.extname(filePath); - dobijanje ekstenzije iz putanje
+
+FS module
+
+Koristi se za rad sa fajlovima.
+
+import fs from 'node:fs'
+
+const content = fs.readFileSync(pathToResource, 'utf8') - sinhroni kod, blokira ostatak koda
+
+fs.readFile(pathToResource, 'utf8', (err, content) => {
+  if (err) {
+    console.log(err)
+    return
+  }
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'text/html')
+  res.end(content)
+}) - asinhroni nacin, komplikovan
+
+import fs from 'node:fs/promises'
+
+const content = await fs.readFile(pathToResource, 'utf8')
+-createServer mora da bude async
+
+utf8 moze da corruptuje fajlove ako nisu tekst, bolje bez
+
+const http = require('http') - pre importa, global variable __dirname, __filename
+
+const types = {
+     ".js": "text/javascript",
+     ".css": "text/css",
+     ".json": "application/json",
+     ".png": "image/png",
+     ".jpg": "image/jpeg",
+     ".jpeg": "image/jpeg",
+     ".gif": "image/gif",
+     ".svg": "image/svg+xml"
+   }
