@@ -145,3 +145,99 @@ const types = {
      ".gif": "image/gif",
      ".svg": "image/svg+xml"
    }
+
+XSS Napad
+Sanitize html da se ne desi
+
+npm package: sanitize-html
+
+sanitizeHtml('string,  {allowedTags: ['h1'], allowedAttributes: {}})
+
+Node je event driven
+
+Event emitter
+
+// import EventEmitter
+import { EventEmitter } from 'node:events'
+
+const customerDetails = {
+  fullName: 'Meryl Sheep',
+  email: 'baah@thedevilwearswool.com',
+  phone: 12345678910
+}
+
+// create the emitter
+const emailRequestEmitter = new EventEmitter()
+
+// define the listener function
+function generateEmail(customer) {
+  console.log(`Email generated for ${customer.email}`)
+}
+
+// register the listener
+emailRequestEmitter.on('emailRequest', generateEmail)
+emailRequestEmitter.on('emailRequest', () => console.log('task assigned'))
+emailRequestEmitter.on('emailRequest', () => console.log('email logged'))
+
+// emit the event
+setTimeout(()=> {
+  emailRequestEmitter.emit('emailRequest', customerDetails)
+}, 2000)
+
+SSE Server Sent Events
+
+Konstantan stream podataka klijentu bez njegovog responsea
+
+Server uspostavlja vezu i drzi je otvorenom
+
+const server = http.createServer(async (req, res) => {
+
+  if (!req.url.startsWith('/temp/live')) {
+    return await handleFiles(req, res, __dirname)
+  } else if (req.url === '/temp/live') {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/event-stream')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+   
+    setInterval( () => {
+
+      const temperature = getTemp()
+      res.write(
+        `data: ${JSON.stringify({ event: 'temp-updated', temp: temperature})}\n\n` - MORA NN
+      )
+
+    }, 2000)
+  }
+
+})
+
+FRONTEND
+
+const eventSource = new EventSource('/temp/live')
+
+const tempDisplay = document.getElementById('temp-display')
+
+eventSource.onmessage = (event) => {
+  const data = JSON.parse(event.data)
+  const temperature = data.temp
+
+  tempDisplay.textContent = temperature
+}
+
+eventSource.onerror = () => {
+  console.log('Connection failed...')
+}
+
+Nodemon - auto reload za node
+
+npm install --save-dev nodemon
+npm install -D nodemon
+--save-dev -D package samo za development
+
+"scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }, - u package.json
+
+npm run dev sad za pokretanje
