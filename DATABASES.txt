@@ -1,0 +1,145 @@
+SQL - structured query language
+
+SQL
+Koristi se cuvanje, pristup i menjanje podataka.
+Relacione baze organizovane u tabele.
+Veze i tabele su prikazane u schema (semi)
+Sadrze kolone i veze.
+
+Skalabilnost: horizontalna (dodavanje jos resursa na isti server)
+
+NoSQL
+
+Nerelacione
+Manje striktna struktura i veze
+Fleksibilnije strukture.
+
+Ima vise tipova:
+
+Document store: cuvanje u dokumentima tipa json (MongoDB), koristi se kod CMS-a
+Key-value store: samoobjasnjivo (Redis), koristi se kod API-a
+Column-Family stores: podaci se cuvaju u kolonama umesto u redovima (Cassandra), koristi se kod event trackinga i time series-a
+Graph databases: graf struktura, veze jake, i veze i nodeovi imaju svojstva (Neo4j), koristi se za drustvene mreze
+
+Jezici: MongoDB, Sypher, CQL...
+Skalabilnost: vertikalna (dodavanje jos servera)
+
+DBMS - Database Managment System
+Biblioteke: SQLite, SQLAlchemy, PGLite(Postgres)
+
+ORM - Object Relational Mapping
+Prevodi kod u nekom jeziku u SQL upite
+Primer: Prisma
+
+Managed 
+
+Cloud based provajder upravlja bazom.
+Fleksibilnost rasta, skaliramo koliko resursa nam je potrebno.
+Isto i sa cenama, skaliraju sa kolicinom resursa.
+Security ne radis ti.
+Za jednostavne sisteme.
+
+Self-hosted
+Nasa baza, mi sve radimo, nas server (fizicki, virtuelna masina, docker container)
+Veci customization.
+Custom security.
+Nema trece partije.
+Za slozenije sisteme.
+
+SQL Upiti
+Scrimba koristi PGLite za node.js
+
+SELECT kolone FROM baza - klasikica
+WHERE uslov
+
+<> = !=
+AND, OR, NOT
+
+LIKE
+  % - bilo sta
+  _ - jedan karakter
+
+BETWEEN vrednost AND vrednost
+
+IS FALSE
+
+ORDER BY kolona DEC / ASC, druge kolone - posle having
+Primer: ORDER BY condition DESC, price ASC
+
+LIMIT broj, ide na kraju
+
+AS alias
+
+HAVING
+
+CRUD - Create Read Update Delete
+
+INSERT INTO cars () VALUES (), () - moguce je i vise values zato druga zagrada
+
+UPDATE tabela SET
+kolona = vrednost - moze i vise kolona
+WHERE ;
+
+DELETE FROM tabela 
+WHERE
+
+CREATE TABLE IF NOT EXISTS tabela (
+  id SERIAL PRIMARY KEY (SERIAL AUTO INDEX u Postgres),
+  kolona NOT NULL
+  strani_kljuc INTEGER NOT NULL REFERENCES tabela(id)
+)
+
+KArdinalnost:
+1:1
+1:n
+m:n
+
+ALTER TABLE
+
+ALTER TABLE cars
+ADD COLUMN dealership_id INTEGER;
+
+ALTER TABLE cars
+ALTER COLUMN dealership_id SET NOT NULL;
+
+ALTER TABLE staff
+ALTER COLUMN dealership_id DROP NOT NULL;
+
+ALTER TABLE cars
+ADD CONSTRAINT dealership_fk FOREIGN KEY (dealership_id)
+REFERENCES dealerships(id);
+
+ALTER TABLE cars
+ALTER COLUMN brand SET NOT NULL,
+ALTER COLUMN model SET NOT NULL,
+ALTER COLUMN year SET NOT NULL;
+
+MOZE VISE U ALTER TABLE
+
+JOINOVANJE
+
+SELECT brand, model, price, sold, sold_price 
+FROM sold_cars SC
+LEFT / RIGHT / FULL / INNER JOIN cars C ON SC.cars_id = C.id;
+
+SELECT
+	S.name,
+	S.role,
+	D.city
+FROM sold_cars SC
+	FULL JOIN staff S ON SC.seller = S.id
+	LEFT JOIN dealerships D ON S.dealership_id = D.id
+WHERE SC.id IS NULL
+	AND S.role = 'Salesperson';
+
+VISE TABELA
+
+SQL INJECTION
+
+PREVENCIJA
+
+1. Parametrizovani uputi
+2. ORM
+3. Sanitize
+4. Limitiranje pristupa bazi
+5. Web App FireWall

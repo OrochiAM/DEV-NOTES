@@ -58,6 +58,8 @@ input - svaka promena
 getElementsByClassName vraca HTMLCollection (automatski se menja kad se dom menja)
 
 Funkcije 
+console.table() - ISPIS TABELA!!! KORISTI OVO!!!!
+
 .filter(OVDE IDE FUNKCIJA CUSTOM FILTER EZ)
 filter vraca niz
 
