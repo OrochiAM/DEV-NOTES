@@ -1,5 +1,22 @@
 <?php ?> - u ovome se pise
 
+Mora ;!!!
+
 promenljive pocinju sa $
 
-$var = [...]
+$var = [...];
+
+Nizovi:
+$niz = [1, 2, 3];
+$niz = array(1, 2, 3);
+$niz[] = 4; - dodavanje na poslednje mesto u nizu
+
+Petlje:
+foreach($niz as $n) {
+  [...]
+}
+
+Funkcije
+Ugradjene:
+var_dump($prom); - vraca vrednost i tip promenljive.
+print_r($prom); - samo vrednost
