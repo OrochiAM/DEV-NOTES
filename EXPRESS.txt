@@ -1,0 +1,19 @@
+npm install express
+
+package-lock.json - prati verzije
+
+import express from 'express'
+
+const PORT = 8000
+
+const app = express()
+
+app.listen(PORT, ()=> console.log(`server connected on port ${PORT}`))
+
+EXPRESS AUTOMATSKI PARSUJE JSON I STRINGIFAJUJE
+
+app.get('/', (req, res) => {
+  res.json(celebrity)  
+})
+
+Automatski content type i status code
