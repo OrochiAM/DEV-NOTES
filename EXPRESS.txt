@@ -17,3 +17,5 @@ app.get('/', (req, res) => {
 })
 
 Automatski content type i status code
+
+req.
