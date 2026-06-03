@@ -18,4 +18,34 @@ app.get('/', (req, res) => {
 
 Automatski content type i status code
 
-req.
+req.query - objekat sa query params
+req.params - objekat sa path params
+
+'/api/crypto-name/:currency' - path params :!!!!
+'/api/:category/:type' : - znaci promenljiv deo urla
+
+res.status(<code>) - moze i chainovanjem pre json
+
+return res.json() zaustavlja posle slanja
+
+Express Router
+
+const apiRouter = express.Router()
+
+const productsController = (req, res) => {
+    res.json({data: 'products'})
+}
+
+apiRouter.get('/api/products', productsController)
+
+app.use('/api', apiRouter)
+
+app.use((req, res) => {
+    res.status(404).json({ message: "Endpoint not found. Please check the API documentation." })
+}) - posle svih ruta
+
+CORS
+
+npm install cors 
+
+app.use(cors()) - pre ostalih use
