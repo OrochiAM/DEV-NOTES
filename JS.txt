@@ -378,6 +378,9 @@ await postoji samo u async f-ji
 Ako je tip fajla modul async await moze i u top levelu da se pise
 odmah await fetch ne mora u f-ji
 
+const res = await fetch('https://catfact.ninja/fact');
+const data = await res.json();
+
 sada rezultat fetch-a moze da se stavi u promenljivu, to bez async nije moglo, jer vraca promise.
 
 async function handleClick() {
