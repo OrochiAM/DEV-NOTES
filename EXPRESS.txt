@@ -49,3 +49,26 @@ CORS
 npm install cors 
 
 app.use(cors()) - pre ostalih use
+
+Middleware
+
+Funkcije koje modifikuju request i response objekte ili da zaustave response ranije ako je to potrebno.
+(CORS, Parsing Zahteva, Logovanje Zahteva...)
+
+Custom Middleware - sami ga pravimo
+Built-in Middleware - dolazi sa express-om 
+3rd Party - importuje se kroz npm
+
+https://expressjs.com/en/guide/using-middleware/
+
+app.use((req, res, next) => {
+    console.log('Custom headers added')
+    next()
+}) - dodavanje middleware-a
+
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`)
+    next()
+}) - oba ova su middleware stack
+
+app.use(express.static('public')) - da se posalju static fajlovi, unutar zagrada je path do public direktorijuma.
