@@ -6,6 +6,15 @@ innerHTML ako menjamo HTML u suprotnom innerText.
 
 Objects
 destination[locationToCheck] - i ovako moze da se pristupi nizu objekata
+for (const {location, details} of abductionsData) - iteracija objekta
+abductions.map(({location, details}) =>)
+const displayItems = products.map(({ id, title, artist, year, stock }) => {
+    return { id, title, artist, year, stock }
+}) - ogranicavanje objekata  
+
+for (const [key, value] of Object.entries(user)) {
+  console.log(`${key}: ${value}`);
+} - iteracija objekata
 
 Razliciti fajlovi: 
 export const dinnerPartyGuests = []

@@ -143,3 +143,77 @@ PREVENCIJA
 3. Sanitize
 4. Limitiranje pristupa bazi
 5. Web App FireWall
+
+SQLite(Node)
+
+npm i sqlite3 (driver, otvara konekciju, izvrsava upite, read/write) 
+npm i sqlite (wraper, async await support)
+
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import path from 'node:path'
+
+async function createTable() {
+
+  const db = await open({
+    filename: path.join('database.db'),
+    driver: sqlite3.Database
+  })
+
+  await db.exec(`
+  CREATE TABLE IF NOT EXISTS abductions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    location TEXT NOT NULL,
+    details TEXT NOT NULL
+  )
+  `)
+
+  await db.close()
+  console.log('Table abductions created')
+}
+
+createTable()
+
+METODE U SQLite
+db.exec() - vise statementa (Schema setup) - ne vraca vrednost
+db.run() - jedan statement (INSERT, UPDATE, DELETE) - ne vraca vrednost
+db.get() - vracanje jednog reda
+db.all() - vracanje vise redova
+U SVE IDE STRING UPIT
+
+await db.run(
+	`INSERT INTO abductions (location, details)
+	VALUES (?, ?)`,
+	[location, details]
+)
+
+await db.exec('BEGIN TRANSACTION')
+	SVE IZMEDJU SE IZVRSAVA ODJEDNOM, BRZE JE
+await db.exec('COMMIT')
+await db.exec('ROLLBACK') - u catch
+
+db.close() - u finally
+
+const query = 'SELECT * FROM abductions WHERE location = ?'
+const params = ['Roswell']
+
+const abductions = await db.all(query, params)
+
+
+db.js (konekcija ka bazi)
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import path from 'node:path'
+
+export async function getDBConnection() {
+
+const dbPath = path.join('database.db')
+
+ return open({
+   filename: dbPath,
+   driver: sqlite3.Database
+ }) 
+
+} 
+
+const db = await getDBConnection()

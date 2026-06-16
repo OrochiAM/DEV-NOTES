@@ -72,3 +72,5 @@ app.use((req, res, next) => {
 }) - oba ova su middleware stack
 
 app.use(express.static('public')) - da se posalju static fajlovi, unutar zagrada je path do public direktorijuma.
+
+const queryParams = new URLSearchParams(filters)
