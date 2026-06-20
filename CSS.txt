@@ -7,26 +7,6 @@ Margin auto radi samo sa display block, slike imaju display inline.
 
 button:disabled
 
-hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
-hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
-
-Gradient border:
-background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
-background: linear-gradient([...]) padding-box, conic-gradient([...]) border-box - gradient border (za razliku od border image moze radius)
-
-Property primer:
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0turn;
-  inherits: true;
-} - custom vrednost koju animiramo
-
-@keyframes rotate {
-  to {
-    --angle: 1turn;
-  }
-}
-
 Kul kombo:
 background-color,
 background-blend-mode
@@ -149,3 +129,32 @@ grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); - ne idu ispod 100p
 grid-template-columns: repeat(9, 1fr) repeat(3, minmax(70px, 1fr));
 
 place-items: center; - centrira sve u gridu 
+
+FUN THINGS
+
+Counter
+
+ide counter-reset: tip(dete); na parenta
+na dete: counter-increment: tips;
+
+content: "0" counter(tips) / "alt text(za accessability)" - na ::before
+
+hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
+hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
+
+Gradient border:
+background-image: linear-gradient([...]), url([...]) - sa linear-gradient se lako postize overlay 
+background: linear-gradient([...]) padding-box, conic-gradient([...]) border-box - gradient border (za razliku od border image moze radius)
+
+Property primer:
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0turn;
+  inherits: true;
+} - custom vrednost koju animiramo
+
+@keyframes rotate {
+  to {
+    --angle: 1turn;
+  }
+}
