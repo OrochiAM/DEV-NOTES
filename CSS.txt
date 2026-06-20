@@ -132,13 +132,6 @@ place-items: center; - centrira sve u gridu
 
 FUN THINGS
 
-Counter
-
-ide counter-reset: tip(dete); na parenta
-na dete: counter-increment: tips;
-
-content: "0" counter(tips) / "alt text(za accessability)" - na ::before
-
 hsl([h] [s]% [l]% / [opacity]) - obavezno koristi crticu
 hsl(from var(--white) h s l) - h s l su kao promenljive, moze calc i sve tako
 
@@ -158,3 +151,22 @@ Property primer:
     --angle: 1turn;
   }
 }
+
+Counter
+
+ide counter-reset: tip(dete); na parenta
+na dete: counter-increment: tips;
+
+content: "0" counter(tips) / "alt text(za accessability)" - na ::before
+
+font-variant-numerics: tabular-nums; - svi brojevi iste sirine
+
+columns: max-broj-kolona 15ch; - tekst u kolonama
+gap:;
+column-rule:solid 3px boja; - linija izmedju
+gsp-decoration - uskoro dolazi, za flex i grid
+
+text-decoration-thickness - kao sto ime kaze
+text-decoration-style
+text-decoration-color
+text-underline-offset - udaljenost linije
