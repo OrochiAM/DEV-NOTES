@@ -175,8 +175,8 @@ async function createTable() {
 createTable()
 
 METODE U SQLite
-db.exec() - vise statementa (Schema setup) - ne vraca vrednost
-db.run() - jedan statement (INSERT, UPDATE, DELETE) - ne vraca vrednost
+db.exec() - vise query-a (Schema setup) - ne vraca vrednost, ne podrzava parametre
+db.run() - jedan query (INSERT, UPDATE, DELETE) - ne vraca vrednost, podrzava parametre
 db.get() - vracanje jednog reda
 db.all() - vracanje vise redova
 U SVE IDE STRING UPIT
@@ -192,7 +192,7 @@ await db.exec('BEGIN TRANSACTION')
 await db.exec('COMMIT')
 await db.exec('ROLLBACK') - u catch
 
-db.close() - u finally
+await db.close() - u finally
 
 const query = 'SELECT * FROM abductions WHERE location = ?'
 const params = ['Roswell']
