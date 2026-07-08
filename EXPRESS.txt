@@ -1,3 +1,5 @@
+KORISTI AWAIT!!
+
 npm install express
 
 package-lock.json - prati verzije
@@ -8,8 +10,11 @@ const PORT = 8000
 
 const app = express()
 
-app.listen(PORT, ()=> console.log(`server connected on port ${PORT}`))
-
+app.listen(PORT, () => { 
+  console.log(`Server running at http://localhost:${PORT}`)
+}).on('error', (err) => {
+  console.error('Failed to start server:', err)
+}) 
 EXPRESS AUTOMATSKI PARSUJE JSON I STRINGIFAJUJE
 
 app.get('/', (req, res) => {
@@ -74,3 +79,96 @@ app.use((req, res, next) => {
 app.use(express.static('public')) - da se posalju static fajlovi, unutar zagrada je path do public direktorijuma.
 
 const queryParams = new URLSearchParams(filters)
+
+app.use(express.json()) - da moze json server da prima
+
+npm install validator - biblioteka za validaciju
+
+import validator from 'validator'
+validator.isEmail(newUser.email)
+
+da li vrednost nije vazna proveri samo da nije falsie
+
+idi jedno po jedno nemoj da nestujes mnogo ifova ako nesto ne valja samo return res.json za kraj
+
+hash nije dovoljan, saltuj
+koristi se bcryptjs
+
+import bcrypt from 'bcryptjs'
+
+const hasehd = await bcrypt.hash(string, cost factor)
+cost factor obicno 10
+
+const userIsValid = await bcrypt.compare(loginAttempt.password, userInDb.password)
+
+express-session - cuvanje podataka izmedju http zahteva (recimo cuva se login state)
+
+req.session
+
+u produkciji se sesije cuvaju u session storeu da se ne brisu kada se refreshuje browser (jer je http stateless)
+
+express cuva kao cookie
+
+npm i express-session
+import session from 'express-session'
+
+const secret = process.env.SPIRAL_SESSION_SECRET || 'jellyfish-baskingshark'
+
+app.use(session({
+  secret: secret,
+  resave: false, - ne cuva se ako se nije promenila sesija
+  saveUninitialized: false, - ne prave se za guest sesije
+  cookie: {
+    httpOnly: true, - ne moze da se accessuje preko js-a
+    secure: false, - https 
+    sameSite: 'lax' - kako se salju kolacici preko cross site zahteva (ne moze POST sa drugog sajta)
+  }
+}))
+
+sqllite vraca lastid pri insertu
+
+moze se koristiti u sesiji
+
+req.session.userId = result.lastID
+
+req.session.destroy(()=> {
+    res.json({ message: 'Logged out' })
+}); - unistavanje sesije i calback
+
+Env Vars
+
+npm install dotenv
+
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+u .env
+SPIRAL_SESSION_SECRET=jellyfish-baskingshark
+process.env.SPIRAL_SESSION_SECRET - pristup
+
+.env.example - da se kaze sta treba da se napravi
+SPIRAL_SESSION_SECRET=
+
+/api/auth/me - me obicno za podatke o korisniku
+ako server vraca da nije loginovan, to je opet server code 200, ocekivano je
+
+res.status(204).send() - bez podataka tipa json
+
+Protected Routes
+
+Ovaj middleware se stavlja na rutu samo 
+Custom middleware:
+
+export function requireAuth(req, res, next) {
+
+   if(!req.session.userId) {
+      console.log('Acces blocked.')
+      return res.status(401).json({ error: 'Unauthorized' })
+   }
+
+   next()
+}
+
+Primena:
+app.use('/api/cart', requireAuth, cartRouter) - prvo odradi auth pa ide na next ako je sve kako treba
