@@ -1,0 +1,42 @@
+Koristi JSX.
+
+import { createRoot } from "react-dom/client"
+
+Kreiranje rute, tu se renderuju stvari.
+const root = createRoot(document.getElementById("root"))
+
+root.render(<h1>Hello, React!</h1>)
+
+Setup Projekta (Vite):
+
+npm create vite@latest
+
+import { createElement } from "react" - nekad se ovo koristilo za kreiranje elemenata
+
+createElement("h1", null / props, "Hello from createElement!" / deca) - ne koristi se vise, vraca react objekat
+
+JSX ga je zamenio
+
+const reactElement = <h1>Hello from JSX!</h1> - react ga pretvara u react objekat
+
+Zasto React? 
+Composable je, ima alate za kreairanje reusable interchangable kompleksnih sistema. (komponente)
+Declarative je, radi sam dosta stvari, mi mu samo kazemo sta da uradi, za razliku od imperatiovnog, gde mora da se kaze i kako.
+
+U vite-u uvek jsx umesto js, iako radi.
+
+Mora da ima parent za vise elemenata.
+
+Kod komponenti se koristi Pascal case, i prvo slovo veliko u odnosu na camelCase.
+Komponente su funkcije koje vracaju react objekte.
+
+import { Fragment } from "react"
+<Fragment>
+</Fragment> - bez da se renderuje parent element
+<>
+</> - drugi nacin pisanja, ne mora da se importuje
+
+className umesto class
+
+export default function Header() {}
+import Header from "./Header"

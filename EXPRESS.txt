@@ -163,7 +163,7 @@ Custom middleware:
 export function requireAuth(req, res, next) {
 
    if(!req.session.userId) {
-      console.log('Acces blocked.')
+      console.log('Access blocked.')
       return res.status(401).json({ error: 'Unauthorized' })
    }
 
