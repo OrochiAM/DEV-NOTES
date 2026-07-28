@@ -170,3 +170,5 @@ text-decoration-thickness - kao sto ime kaze
 text-decoration-style
 text-decoration-color
 text-underline-offset - udaljenost linije
+
+object-fit: cover; - za img

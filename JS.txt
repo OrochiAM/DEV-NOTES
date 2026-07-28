@@ -213,6 +213,7 @@ Deep Copy - ne menja.
 
 Object Destructuring
 const {title, year, genre, star, director} = favouriteFilm
+const {img: image, name} = person - ako hocemo drugo ime
 
 APIs, Async
 

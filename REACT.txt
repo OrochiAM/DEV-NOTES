@@ -40,3 +40,37 @@ className umesto class
 
 export default function Header() {}
 import Header from "./Header"
+
+JS u JSX-u
+{}
+<h1>Hello {firstName + " " + lastName}</h1>
+<h1>Hello {firstName} {lastName}</h1> - dok god se vraca vrednost
+<h1>It is currently about {new Date().getHours() % 12}</h1>
+
+Props
+
+export default function Contact(props)
+{props.img}
+export default function Contact({img, name, phone, email}) - destruktuirano
+{props.setup && <p className="setup">Setup: {props.setup}</p>} - klasika shortcircuit
+style={{display: props.setup ? "block" : "none"}} - ista stvar
+
+{broj, drugi tip} - za druge tipove i brojeve sem stringova
+
+import mrWhiskerson from "./images/mr-whiskerson.png" - importovanje staticnih asseta
+img={mrWhiskerson}
+
+{ninjaTurtles.map((nt) => <h2>{nt}</h2>)} - mapiranje elemenata
+
+svako dete mora da ima key prop
+
+key={neki unique id} - ne koristi index niza
+
+Passuj objekat kao prop. (mora i objektu da se pristupi)
+
+Moze i sa spread operatorom.
+
+<Entry
+    key={entry.id}
+    {...entry}
+/>
