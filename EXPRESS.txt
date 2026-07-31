@@ -141,7 +141,7 @@ npm install dotenv
 
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config({ path: '/custom/path/to/.env' });
 
 u .env
 SPIRAL_SESSION_SECRET=jellyfish-baskingshark

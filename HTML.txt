@@ -6,8 +6,9 @@ Data attribute
 data-[naziv]="podaci"
 
 Forme:
-
 <form onsubmit="return false">
+
+Button je automatski submit u formi.
 
 <fieldset> 
 	<legend>Legenda</legend>
