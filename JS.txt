@@ -46,6 +46,8 @@ loginForm.addEventListener('submit', function(e){
 
 const formData = new FormData(form) - form data u objektu
 formData.get([name iz inputa]) - uzimanje objekta
+Object.fromEntries(formData) - za object destruktuiranje, ne za checkbox-ove
+formData.getAll("dietaryRestrictions") - za checkbox
 
 element.disabled = true / false
 

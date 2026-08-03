@@ -130,3 +130,58 @@ setContact(prevContact => {
 React Forme
 
 <label htmlFor="" - umesto for>Email:</label>
+
+Kupljenje podataka.
+<form action={signUp}> - automatski post
+  <input defaultValue="joe@schmoe.com"/> - ovako default
+
+function signUp(formData) {
+    const email = formData.get("email")
+    console.log(email)
+} - forma se automatski resetuje
+
+Radio button mora da ima value 
+
+defaultChecked={true} - default za checkbox i radio
+
+Conditional Rendering
+
+
+{isShown ? <p>{props.punchline}</p> : null} - Klasika ternary operator, za vise opcija
+ili
+{isShown && <p>{props.punchline}</p>} - Shortcircuiting, za jednu opciju
+
+onClick mora na native html elemente
+
+<Star isFilled={contact.isFavorite} handleClick={toggleFavorite} /> - salje se funkcija
+
+<button
+            onClick={props.handleClick}
+
+State ne moze da se deli izmedju sibling komponenti
+
+Stilizovanje
+
+Koristi se style, prima objekat.
+
+const styles = {
+        backgroundColor: "red"
+    }
+
+<button style={styles} key={pad.id}></button>
+
+<div className="pad-container" style={{backgroundColor: darkMode ? "#222222": "#cccccc"}}>
+
+Derived local state: State moze da se napravi za svaku komponentu posebno u listi komponenti. - razlikuje se glavni state i nasledjeni.
+
+Shared state: jedan state, salju se funkcije koje menjaju.
+
+ function toggle(id) {
+        setPads(prevPads => prevPads.map(item => {
+            return item.id === id ? {...item, on: !item.on} : item
+        }))
+    }
+
+onClick={() => props.toggle(props.id)} - u komponenti
+
+React Markdown 
