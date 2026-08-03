@@ -156,7 +156,7 @@ onClick mora na native html elemente
 <Star isFilled={contact.isFavorite} handleClick={toggleFavorite} /> - salje se funkcija
 
 <button
-            onClick={props.handleClick}
+    onClick={props.handleClick}
 
 State ne moze da se deli izmedju sibling komponenti
 
@@ -165,8 +165,8 @@ Stilizovanje
 Koristi se style, prima objekat.
 
 const styles = {
-        backgroundColor: "red"
-    }
+    backgroundColor: "red"
+}
 
 <button style={styles} key={pad.id}></button>
 
@@ -176,12 +176,28 @@ Derived local state: State moze da se napravi za svaku komponentu posebno u list
 
 Shared state: jedan state, salju se funkcije koje menjaju.
 
- function toggle(id) {
-        setPads(prevPads => prevPads.map(item => {
-            return item.id === id ? {...item, on: !item.on} : item
-        }))
-    }
+function toggle(id) {
+    setPads(prevPads => prevPads.map(item => {
+        return item.id === id ? {...item, on: !item.on} : item
+    }))
+}
 
 onClick={() => props.toggle(props.id)} - u komponenti
 
 React Markdown 
+
+Controlled components - komponente kojima upravlja react
+
+onChange={handleChange}
+value={meme.bottomText}
+
+{
+    ...prevMeme,
+    [name]: value
+} - ovako moze objekat da prima kljuc
+
+Funkcionalno programiranje
+
+Pure funkcije - isti input > isti output, ne menja van sistema
+Immutability - props se ne menja, ni state direktno
+Izbegavanje side effecta, kada se rerendereuje da se tipa ne fetchuje jer zahtevno
