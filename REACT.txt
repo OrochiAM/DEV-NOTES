@@ -122,10 +122,10 @@ function subtract() {
 
 setMyFavoriteThings(prevFavThings => [...prevFavThings, <new item here>]) - dodavanje u niz
 
-setContact(prevContact => {
+setContact(prevContact => ({
     ...prevContact,
     isFavorite: !prevContact.isFavorite
-}) - promena objekta
+})) - promena objekta
 
 React Forme
 
@@ -145,7 +145,6 @@ Radio button mora da ima value
 defaultChecked={true} - default za checkbox i radio
 
 Conditional Rendering
-
 
 {isShown ? <p>{props.punchline}</p> : null} - Klasika ternary operator, za vise opcija
 ili
@@ -180,8 +179,10 @@ Shared state: jedan state, salju se funkcije koje menjaju.
         setPads(prevPads => prevPads.map(item => {
             return item.id === id ? {...item, on: !item.on} : item
         }))
-    }
+    } - nad komponenti
 
-onClick={() => props.toggle(props.id)} - u komponenti
+onClick={() => props.toggle(props.id)} - u pod komponenti
 
 React Markdown 
+
+Side Effects
