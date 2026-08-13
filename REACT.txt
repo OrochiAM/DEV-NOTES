@@ -208,3 +208,71 @@ useEffect() - za sisteme van React-a (API, Websockets)
 useEffect(setup(), dependencies) - svaki kod koji radi van React-a ide u setup
 
 useEffect radi posle rendera - uvek
+
+Dependencies array
+
+useEffect(function() {
+        console.log("Effect ran")
+        fetch("https://swapi.dev/api/people/1")
+            .then(res => res.json())
+            .then(data => setStarWarsData(data))
+    }, [count]) - dependency array se proverava sa pravim stateom pri svakoj promeni, ako su razliciti radu useEffect.
+
+Kada se koriste dependencies, ne pravi se infinite loop, samo kada se ne podudaraju radi useEffect.
+
+React.useEffect(() => ..., []), prazan niz, jednom se izvrsi, jer vrednost nikada nece da bude ista, bez se svaki put kad se renderuje izvrsi
+
+React.useEffect(() => {
+    fetch(`https://swapi.dev/api/people/${count}`)
+        .then(res => res.json())
+        .then(data => setStarWarsData(data))
+}, [count]) - primer sa promenom
+
+useEffect i kad se manipulise domom (tipa radi sa window)
+
+const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+React.useEffect(() => {
+    window.addEventListener("resize", function() {
+        setWindowWidth(window.innerWidth)
+    })
+}, []) - primer, nije dobro sto se dodaje vise event listenera, mora se ukloni 
+
+React.useEffect(() => {
+    function watchWindowWidth () {
+        console.log("Resized")
+        setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener("resize", watchWindowWidth)
+    return function() {
+        window.removeEventListener("resize", watchWindowWidth)
+    }
+}, []) - uklanja event listener kada se komponenta unmountuje sa stranice
+
+Refs
+
+useRef()
+
+Slicni stateu
+
+Razlike:
+Mutable su (moze direktna vrednost da se menja).
+Ne izaziva rerender. - koristi se za manipulaciju DOM-a.
+
+const recipeSection = React.useRef(null)
+
+ref je poseban prop u obicnim html elementima.
+
+<IngredientsList
+    ref={recipeSection}
+
+<div ref={props.ref}>
+
+{current: null} - vrednost refa
+
+{current: <div>} - posle
+
+React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+        recipeSection.current.scrollIntoView()
+    }
+}, [recipe]) - scrolluje na recept kad se promeni recipe

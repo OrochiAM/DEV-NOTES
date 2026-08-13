@@ -172,3 +172,5 @@ text-decoration-color
 text-underline-offset - udaljenost linije
 
 object-fit: cover; - za img
+
+Margine nisu deo box modela.
