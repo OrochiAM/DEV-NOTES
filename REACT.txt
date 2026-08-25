@@ -52,6 +52,7 @@ Props
 export default function Contact(props)
 {props.img}
 export default function Contact({img, name, phone, email}) - destruktuirano
+
 {props.setup && <p className="setup">Setup: {props.setup}</p>} - klasika shortcircuit
 style={{display: props.setup ? "block" : "none"}} - ista stvar
 
@@ -78,7 +79,6 @@ Moze i sa spread operatorom.
 <button onClick={function}> - onclick
 
 const formData = new FormData(event.currentTarget) - target eventa eventlistenera
-
 
 React State
 
@@ -122,10 +122,10 @@ function subtract() {
 
 setMyFavoriteThings(prevFavThings => [...prevFavThings, <new item here>]) - dodavanje u niz
 
-setContact(prevContact => {
+setContact(prevContact => ({
     ...prevContact,
     isFavorite: !prevContact.isFavorite
-}) - promena objekta
+})) - promena objekta
 
 React Forme
 
@@ -145,7 +145,6 @@ Radio button mora da ima value
 defaultChecked={true} - default za checkbox i radio
 
 Conditional Rendering
-
 
 {isShown ? <p>{props.punchline}</p> : null} - Klasika ternary operator, za vise opcija
 ili
@@ -182,7 +181,7 @@ function toggle(id) {
     }))
 }
 
-onClick={() => props.toggle(props.id)} - u komponenti
+onClick={() => props.toggle(props.id)} - u pod komponenti
 
 React Markdown 
 
@@ -201,3 +200,79 @@ Funkcionalno programiranje
 Pure funkcije - isti input > isti output, ne menja van sistema
 Immutability - props se ne menja, ni state direktno
 Izbegavanje side effecta, kada se rerendereuje da se tipa ne fetchuje jer zahtevno
+
+React ne radi sa localStorage (ne rerenderuje se kada se promeni)
+
+useEffect() - za sisteme van React-a (API, Websockets)
+
+useEffect(setup(), dependencies) - svaki kod koji radi van React-a ide u setup
+
+useEffect radi posle rendera - uvek
+
+Dependencies array
+
+useEffect(function() {
+        console.log("Effect ran")
+        fetch("https://swapi.dev/api/people/1")
+            .then(res => res.json())
+            .then(data => setStarWarsData(data))
+    }, [count]) - dependency array se proverava sa pravim stateom pri svakoj promeni, ako su razliciti radu useEffect.
+
+Kada se koriste dependencies, ne pravi se infinite loop, samo kada se ne podudaraju radi useEffect.
+
+React.useEffect(() => ..., []), prazan niz, jednom se izvrsi, jer vrednost nikada nece da bude ista, bez se svaki put kad se renderuje izvrsi
+
+React.useEffect(() => {
+    fetch(`https://swapi.dev/api/people/${count}`)
+        .then(res => res.json())
+        .then(data => setStarWarsData(data))
+}, [count]) - primer sa promenom
+
+useEffect i kad se manipulise domom (tipa radi sa window)
+
+const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+React.useEffect(() => {
+    window.addEventListener("resize", function() {
+        setWindowWidth(window.innerWidth)
+    })
+}, []) - primer, nije dobro sto se dodaje vise event listenera, mora se ukloni 
+
+React.useEffect(() => {
+    function watchWindowWidth () {
+        console.log("Resized")
+        setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener("resize", watchWindowWidth)
+    return function() {
+        window.removeEventListener("resize", watchWindowWidth)
+    }
+}, []) - uklanja event listener kada se komponenta unmountuje sa stranice
+
+Refs
+
+useRef()
+
+Slicni stateu
+
+Razlike:
+Mutable su (moze direktna vrednost da se menja).
+Ne izaziva rerender. - koristi se za manipulaciju DOM-a.
+
+const recipeSection = React.useRef(null)
+
+ref je poseban prop u obicnim html elementima.
+
+<IngredientsList
+    ref={recipeSection}
+
+<div ref={props.ref}>
+
+{current: null} - vrednost refa
+
+{current: <div>} - posle
+
+React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+        recipeSection.current.scrollIntoView()
+    }
+}, [recipe]) - scrolluje na recept kad se promeni recipe
