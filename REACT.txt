@@ -181,7 +181,7 @@ function toggle(id) {
     }))
 }
 
-onClick={() => props.toggle(props.id)} - u pod komponenti
+onClick={() => props.toggle(props.id)} - u pod komponenti MORA ANONIMNA FJA
 
 React Markdown 
 
@@ -276,3 +276,8 @@ React.useEffect(() => {
         recipeSection.current.scrollIntoView()
     }
 }, [recipe]) - scrolluje na recept kad se promeni recipe
+
+import { nanoid } from "nanoid" 
+id: nanoid() - za key
+
+hold={() => hold(dieObj.id)} - za shared state moze i ovaj rad
