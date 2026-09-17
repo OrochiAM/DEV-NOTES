@@ -1,0 +1,169 @@
+REACT 
+
+Vitest - testing framework
+
+npm install -D vitest
+
+React testing library + Friends - za renderovanje komponenti
+
+npm install -D @testing-library/react @testing-library/jest-dom @testing-library/user-event
+
+jsdom - dom library
+
+npm install -D jsdom
+
+Setup file - test-setup.js
+
+import "@testing-library/jest-dom/vitest";
+import { afterEach } from 'vitest'
+import { cleanup } from "@testing-library/react";
+
+afterEach(() => {
+    cleanup();
+});
+```
+
+vite.config.js
+test: {
+  setupFiles: ["./test-setup.js"],
+  environment: 'jsdom'
+}
+
+package.json
+
+"test": "vitest"
+
+Pokretanje testa: npm run test
+
+Naziv testa za komponente: [Naziv-Komponente].test.jsx
+
+import { test, expect, describe } from 'vitest'
+import { render, screen } from '@testing-library/react'
+
+import Header from './Header'
+
+describe("Header", () => { - TestSuite
+
+  test("displays the app name", () => {
+    render(<Header />)
+
+    expect(screen.getByText("Meme Generator")).toBeInTheDocument()
+  })
+
+  test("displays the troll face", () => {
+    render(<Header />)
+
+    expect(screen.getByRole("img").src).toContain("troll-face.png")
+  })
+})
+
+Moze sve u jednom
+
+test("displays the top and bottom text lines and the meme image", () => {
+  render(<Main />)
+
+  expect(screen.getByText("One does not simply")).toBeInTheDocument()
+  expect(screen.getByText("Walk into Mordor")).toBeInTheDocument()
+  expect(screen.getByRole("img").src).toBe("https://i.imgflip.com/1bij.jpg")
+})
+
+User Interactions
+
+Arrange (kreiraj i spremi podatke) Assert (mimic user interactions) Act (proveri)
+
+import { test, expect } from 'vitest'
+import { userEvent } from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
+
+import App from './App'
+
+
+test("updates the top text", async () => {
+  // Arrange
+  const user = userEvent.setup()
+  render(<App />)
+  const topTextbox = screen.getAllByRole('textbox')[0]
+
+  // Act
+  await user.clear(topTextbox)
+  await user.type(topTextbox,  "A coder does not simply")
+
+  // Assert
+  expect(screen.getByText("A coder does not simply")).toBeInTheDocument()
+})
+
+External Services (API)
+
+Mocking - bez koriscenja pravih podataka
+
+Mock Service Worker (MSW)
+
+npm install -D msw
+
+import '@testing-library/jest-dom/vitest';
+import { beforeAll, afterEach, afterAll } from 'vitest';
+import { cleanup } from '@testing-library/react';
+
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
+
+
+// Prepare data
+const memes = {
+  data: {
+    memes: [
+      {
+        url: 'https://i.imgflip.com/1c1uej.jpg',
+      },
+    ],
+  },
+}
+
+// Define handlers using MSW 1.x
+export const restHandlers = [
+  rest.get('https://api.imgflip.com/get_memes', (req, res, ctx) => {
+    return res(ctx.json(memes));
+  }),
+];
+
+// Set up server
+const server = setupServer(...restHandlers);
+
+// Establish requests interception layer before all tests.
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+
+// Clean up after all tests are done, preventing this
+// interception layer from affecting irrelevant tests.
+afterAll(() => server.close());
+
+
+// Clean up handlers
+afterEach(() => {
+  server.resetHandlers();
+  cleanup();
+});
+
+Coverage
+
+npm install -D @vitest/coverage-istanbul
+
+coverage: {
+  provider: 'istanbul',
+  exclude: ['./src/index.jsx', ...coverageConfigDefaults.exclude]
+}
+
+Accessibility testing
+
+a11y.test.jsx
+
+import { test, expect } from 'vitest'
+
+import { render, screen } from '@testing-library/react'
+
+import App from './App'
+
+test("ensures troll face image is accessible", () => {
+  render(<App />)
+
+  expect(screen.getByAltText("Troll face")).toBeInTheDocument()
+})
