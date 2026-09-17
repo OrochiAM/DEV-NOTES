@@ -20,3 +20,19 @@ Funkcije
 Ugradjene:
 var_dump($prom); - vraca vrednost i tip promenljive.
 print_r($prom); - samo vrednost
+
+CLSX - kondicionalni rad sa classNames
+
+const className = clsx({
+    correct: isCorrect,
+    wrong: isWrong
+})
+
+const className = clsx("chip", isLanguageLost && "lost")
+
+const gameStatusClass = clsx("game-status", {
+    won: isGameWon,
+    lost: isGameLost
+})
+
+a11y - accessability

@@ -102,7 +102,8 @@ const [result, func] = React.useState("Yes") - bolji nacin
 let [isImportant, setIsImportant] = React.useState("Yes") 
 setIsImportant("Heck Yeah.")
 
-Kada se menja state komponenta se rerenderuje, ne ide direktno u komponentu promena state-a
+Kada se menja state komponenta se rerenderuje
+ne ide direktno u komponentu promena state-a
 
 Funkcije komponente se pisu unutar komponenete pre return-a.
 
@@ -181,7 +182,7 @@ function toggle(id) {
     }))
 }
 
-onClick={() => props.toggle(props.id)} - u pod komponenti
+onClick={() => props.toggle(props.id)} - u pod komponenti MORA ANONIMNA FJA, jer bez arrow funkcije bi se izvrsio kod pri renderovanju
 
 React Markdown 
 
@@ -276,3 +277,38 @@ React.useEffect(() => {
         recipeSection.current.scrollIntoView()
     }
 }, [recipe]) - scrolluje na recept kad se promeni recipe
+
+import { nanoid } from "nanoid" 
+id: nanoid() - za key
+
+hold={() => hold(dieObj.id)} - za shared state moze i ovaj rad
+
+Children
+
+Ono izmedju tagova - nalazi se u props.children.
+
+EVENTOVI MORAJU NA HTML ELEMENTIMA NE NA KOMPONENTAMA
+
+<Button style={{color: "green"}} onClick={() => console.log("Logging in...")}>
+<button {...props}>
+-sve objekte primeni na izvornom html elementu
+
+export default function Button({children, ...rest})
+<button {...rest}>
+- ako hocemo da destruktuiramo, u restu je sve sto nije destruktuirano samo po sebi
+
+let sizeClass = size ? `button-${size}` : ""
+
+className={`${sizeClass} ${className}`} - ako hocemo da korisnik dodaje sam klase
+
+import classnames from "classnames" 
+const allClasses = classnames(sizeClass, className) - drugi nacin
+
+Compound components
+
+Prop drilling
+
+Nasledjivanje propova u stablu komponenti.
+
+Resenje kad treba: compund components(vise elemenata u komponenti zbog funkcionalnosti i stilova), context api.
+

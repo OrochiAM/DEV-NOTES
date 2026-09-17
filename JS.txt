@@ -96,6 +96,8 @@ const totalRainfallJanuary = rainJanuaryByWeek.reduce((total(callback), currentE
 
 .children - vraca svu decu
 
+dice.every((d) => d.value == d[0].value)
+
 Hoisting - dekleracije funkcija se pomeraju na pocetak svog scope-a (svuda mogu da se pozovu funkcije)
 
 Function expression (Ne hoistuje se, to je prednost)
@@ -108,6 +110,10 @@ function calculateTotalCost(itemsBoughtArr, discount=0) - ako se ne da vrednost 
 Rest parametar
 function setPermissionLevel(permissionLevel, ...names) {[...]}
 setPermissionLevel('admin', 'Dave', 'Sally')
+
+return new Array(10)
+    .fill(0)
+    .map(() => Math.ceil(Math.random() * 6))
 
 OOP JS
 
@@ -433,3 +439,12 @@ dobijanje lokacije lat i long
 navigator.geolocation.getCurrentPosition((position) => {
   doSomething(position.coords.latitude, position.coords.longitude);
 });
+
+const [dice, setDice] = useState(() => generateAllNewDice()) - da se ne ponavlja fja kad se rerenderuje
+
+onClick={!gameWon ? rollDice : newGame} - i ovaj rad moze
+
+ <div aria-live="polite">
+    {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
+</div> - accessability
+
