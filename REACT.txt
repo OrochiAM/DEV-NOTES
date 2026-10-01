@@ -310,5 +310,48 @@ Prop drilling
 
 Nasledjivanje propova u stablu komponenti.
 
-Resenje kad treba: compund components(vise elemenata u komponenti zbog funkcionalnosti i stilova), context api.
+Resenje kad treba: compound components(vise elemenata u komponenti zbog funkcionalnosti i stilova), context api.
 
+CONTEXT
+
+const ThemeContext = React.createContext()
+
+export default function App() {
+    return (
+        <ThemeContext.Provider value={light}>
+            <div className="container dark-theme">
+                <Header />
+                <Button />
+            </div>
+        </ThemeContext.Provider> - sve komponente unutra vide value
+    )
+}
+
+export { ThemeContext } - moze vako da se exportuje.
+
+KAKO SE KORISTI
+import { ThemeContext } from "./App"
+
+const value = React.useContext(ThemeContext) - u podkomponenti
+
+KORISCENJE HOOKOVA SAMO UNUTAR KOMPONENTE!!
+
+setTheme(prevTheme => prevTheme === "light" ? "dark" : "light") - koristi prev
+
+const { theme, toggleTheme } = React.useContext(ThemeContext) - ovako moze kad objekat prosledimo kontekstu
+
+DOT SYNTAX
+
+index.js 
+import Menu from "./Menu"
+import MenuButton from "./MenuButton"
+import MenuDropdown from "./MenuDropdown"
+import MenuItem from "./MenuItem"
+
+Menu.Button = MenuButton
+Menu.Dropdown = MenuDropdown
+Menu.Item = MenuItem
+
+export default Menu
+
+import Menu from "./Menu/index"
