@@ -355,3 +355,94 @@ Menu.Item = MenuItem
 export default Menu
 
 import Menu from "./Menu/index"
+
+HEADLESS KOMPONENTE 
+komponente bez stila samo sa funkcionalnoscu
+
+useRef - isto ko state samo bez rerendera
+const renderCount = React.useRef(0)
+
+React.useEffect(() => {
+    renderCount.current = renderCount.current + 1
+})
+
+DOM manipulacija
+
+const inputRef = React.useRef(null)
+ref={inputRef}
+inputRef.current.focus()
+
+MOZE DA SE ISKORISTI DA SE PROVERI DA LI JE ELEMENT RENDEROVAN
+
+NOOP funkcija
+export default function Toggle({ children, onToggle = () => {}}) - ako se ne da onToggle
+
+RENDER PROPS
+
+<Decision sayName={(bool) => console.log(bool)} /> 
+
+export default function Decision({sayName}) {
+    const [goingOut, setGoingOut] = React.useState(false)
+    
+    sayName(goingOut) - prosledi se vrednost funkciji koju sami definisemo u komponenti
+
+Fora je da se vrati jsx
+
+<Decision render={(goingOut) => {
+    return (
+        <h1>
+            Am I going out tonight?? {goingOut ? 
+            "Yes!" : "Nope..."}
+        </h1>
+    )
+}} />
+
+<div>
+    <button onClick={toggleGoingOut}>Change mind</button>
+    {render(goingOut)}
+</div>
+
+<Decision>
+    {(goingOut) => {
+        return (
+            <h1>
+                Am I going out tonight?? {goingOut ?
+                    "Yes!" : "Nope..."}
+            </h1>
+        )
+    }}
+</Decision> - vise se koriste kao children
+
+<div>
+    <button onClick={toggleGoingOut}>Change mind</button>
+    {children(goingOut)} - OVAKO IDE CHILDREN POZIV FUNKCIJE
+</div>
+
+CUSTOM HOOKS - kada pravimo funkciju koja koristi postojece hookove
+
+export default function useEffectOnUpdate(effectFunction, deps) {
+    const firstRender = React.useRef(true)
+    
+    React.useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
+        } else {
+            effectFunction()
+        }
+    }, deps)
+}
+
+export default function useToggle({
+    initialValue = false,
+    onToggle = () => { }
+}) {
+    const [on, setOn] = React.useState(initialValue)
+
+    function toggle() {
+        setOn(prevOn => !prevOn)
+    }
+    
+    useEffectOnUpdate(onToggle, [on])
+
+    return [on, toggle]
+}
