@@ -286,6 +286,7 @@ hold={() => hold(dieObj.id)} - za shared state moze i ovaj rad
 Children
 
 Ono izmedju tagova - nalazi se u props.children.
+<MenuButton>Sports</MenuButton>
 
 EVENTOVI MORAJU NA HTML ELEMENTIMA NE NA KOMPONENTAMA
 
@@ -310,5 +311,33 @@ Prop drilling
 
 Nasledjivanje propova u stablu komponenti.
 
-Resenje kad treba: compund components(vise elemenata u komponenti zbog funkcionalnosti i stilova), context api.
+Resenje kad treba: compound components(vise elemenata u jednoj komponenti zbog funkcionalnosti i stilova), context api.
 
+Resenje znaci da ne mora da se passuje down prop vec je sve tu. 
+
+Implicit State
+
+React.Children
+React.cloneElement
+Jos jedan od nacina za izbegavanje prop drillinga.
+
+const [open, setOpen] = React.useState(true)
+
+function toggle() {
+    setOpen(prevOpen => !prevOpen)
+}
+
+{React.Children.map(children, (child) => {
+    return React.cloneElement(child, {
+        open,
+        toggle - u ES6 objekat ce imati kljuc kao naziv promelnjive
+    })
+})} - sad primaju propove, mada ovo je legacy react, ne koristi se, ne ide dovoljno duboko(mora jos React.Children) a i fragile je(dodamo div pokarabasi se)
+
+React context
+
+moderan nacin za izbegavanje prop drilling-a
+
+pravi se provider komponenta na potrebnom nivou
+
+komponenta koja trazi prop koristi useContext() hook
