@@ -1,0 +1,17 @@
+npm create astro@latest
+
+npm run dev - da se pokrene klasika
+
+.astro - ekstenzija
+
+---
+ JS KOD
+--- - front matter 
+
+Dole je HTML
+
+src={background.src} - ovako moze u HTML-u
+
+Root astro fajlova je public folder.
+
+<img src="/images/me.png"/> - ovo je recimo u public folderu
