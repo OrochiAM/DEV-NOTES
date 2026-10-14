@@ -15,3 +15,81 @@ src={background.src} - ovako moze u HTML-u
 Root astro fajlova je public folder.
 
 <img src="/images/me.png"/> - ovo je recimo u public folderu
+
+import Navbar from '../components/Navbar.astro'; - IDE .ASTRO!!!!
+
+<slot /> - za renderovanje dece
+
+---
+const skills = ['HTML', 'CSS', 'JavaScript'];
+--- 
+
+TEMPLATING
+
+<ul>
+    { skills.map( skill => (
+      <li>{skill}</li>
+    ))
+    }
+</ul> - klasika
+
+RAD SA PODACIMA
+import skills from "../data/skills.json"; - samo se importuje
+
+FILE BASED ROUTING - automatski kreirane rute po imenima fajlova
+<li><a href="/contact">Contact</a></li>
+
+CONTENT KOLEKCIJE - definicija izgleda podataka koje koristimo u astro fajlu
+
+pise se u content.config.ts
+
+import { defineCollection, z } from 'astro:content';
+import { file, glob } from "astro/loaders";
+
+const project = defineCollection({
+  loader: file('src/data/projects.json'),
+  loader: glob({ pattern: "**/*.md", base: "src/data/blog" }), - jos jedan primer ne ide dva
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    description: z.string().max(200), 
+    image: z.string(),
+    slug: z.string(),
+    liveSiteURL: z.string(),
+    githubURL: z.string(),
+    date: z.string().date(),
+    tags: z.array(z.string()),
+  })
+});
+
+export const collections = { project };
+
+export const collections = { project, blog }; - vise kolekcija
+
+QUERY KOLEKCIJA
+
+import { getCollection } from "astro:content";
+
+const projects = await getCollection('project');
+
+<img src={project.data.image} alt={project.data.title}/>
+
+MARKDOWN
+
+pise se u .md
+
+# H1 - heading sa textom H1
+## H2
+
+This is my list
+- item 1
+- item 2 - lista
+
+[my website](https://jamesqquick.com) - link
+
+![me](/images/me.png) - slika
+
+
+```
+cont name = "James"; - code snippet
+``` 
