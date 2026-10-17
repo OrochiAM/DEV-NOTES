@@ -12,6 +12,20 @@ Dole je HTML
 
 src={background.src} - ovako moze u HTML-u
 
-Root astro fajlova je public folder.
+Root astro fajlova je public folder u HTML-u.
 
 <img src="/images/me.png"/> - ovo je recimo u public folderu
+
+<style is:global> - stilovi van komponente
+
+interface Props {
+  href: string;
+  text: string;
+  variant?: 'primary' | 'secondary';
+  isDownload?: boolean; 
+}
+
+const {href, text, variant="primary", isDownload} = Astro.props; - props sa typescriptom
+
+<ButtonLink href="/projects" variant="secondary" isDownload={false} text="View projects"/>
+<ButtonLink href="/resume.pdf" isDownload={true} text="Download resume"/> - primer komponenti i propova
