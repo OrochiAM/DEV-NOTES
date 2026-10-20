@@ -512,3 +512,19 @@ React.useEffect(() => {
     }, 1000)
     return () => clearInterval(id) - kad se zavrsi efekat
 }, []) - ovako se cisti useEffect
+
+Code splitting - koriscenje delova aplikacije samo kada treba
+
+koristi se dynamic import i React.lazy
+
+Router 6
+
+npm i react-router-dom
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+<BrowserRouter>
+    <Routes>
+        
+    </Routes>
+</BrowserRouter>
