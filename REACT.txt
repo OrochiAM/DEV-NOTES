@@ -565,3 +565,21 @@ export default function Layout() {
         </>
     )
 }
+
+Relativne rute
+bez /
+
+<Routes>
+    <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="vans" element={<Vans />} />
+        <Route path="vans/:id" element={<VanDetail />} />
+        
+        <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} /> - indeks ruta prikazuje na parent ruti
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+        </Route>
+    </Route>
+</Routes>
