@@ -544,3 +544,24 @@ const params = useParams() - da se pokupe parametri
 Nested Routes
 
 Predstavlja vise route parametara i deljeni UI koji treba da se prikaze.
+
+Layout routes. - za kreiranje layout-a
+
+<Route element={<Layout />}>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/vans" element={<Vans />} />
+    <Route path="/vans/:id" element={<VanDetail />} />
+</Route> - nestovane rute, layout se renderuje i unutra ostale komponente 
+
+import React from "react"
+import { Outlet } from "react-router-dom"
+
+export default function Layout() {
+    return (
+        <>
+            <h1>This is the Layout Route</h1>
+            <Outlet /> - u outletu se renderuju child komponente
+        </>
+    )
+}
