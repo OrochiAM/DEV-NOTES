@@ -517,7 +517,7 @@ Code splitting - koriscenje delova aplikacije samo kada treba
 
 koristi se dynamic import i React.lazy
 
-Router 6
+REACT ROUTER 6
 
 npm i react-router-dom
 
@@ -525,6 +525,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 <BrowserRouter>
     <Routes>
-        
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
     </Routes>
-</BrowserRouter>
+</BrowserRouter> - samoobjasnjivo
+
+<Link to="/">Home</Link>
+<Link to="/about">Abo</Link> - link u routeru da ne refreshuje stranicu i gubi state.
+- mora u browser routeru
+
+<Route path="/vans/:id" element={<VanDetail />} /> - route parametar
+
+<Link key={van.id} to={`/vans/${van.id}`}>- ovako se prosledjuje parametar
+
+import { useParams } from "react-router-dom"
+const params = useParams() - da se pokupe parametri
+
+Nested Routes
+
+Predstavlja vise route parametara i deljeni UI koji treba da se prikaze.

@@ -25,3 +25,5 @@ aria-live="polite..." - ako se menja dinamicki kroz JS
 
 h1-h6 samo za naslove koji oznacavaju deo sajta
 p za drugi tekst 
+
+Button ne ide U link (anchor tag)
