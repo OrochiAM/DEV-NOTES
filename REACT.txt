@@ -583,3 +583,12 @@ bez /
         </Route>
     </Route>
 </Routes>
+
+Nestovanje ruta samo kad nam treba novi ui.
+
+<NavLink> - style i className mogu da uzmu funkciju
+
+<NavLink 
+    to="/about"
+    className={({isActive}) => isActive ? "my-link" : null }
+>
