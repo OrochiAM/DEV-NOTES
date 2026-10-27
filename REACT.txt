@@ -601,8 +601,35 @@ Nestovanje ruta samo kad nam treba novi ui.
     Dashboard
 </NavLink>
 
-Link / Navlink takodje moze da ima relativnu putanju, vode ne rutu koja je zasnovana na stranici na kojoj je link
+Link / Navlink takodje moze da ima relativnu putanju, vode ne rutu koja je zasnovana na ruti na kojoj je link
 
 Link na stranici income bez / ce da vodi na /host/income/novaruta
 
 to="." - relativna putanja na stranicu na kojoj je link renderovan
+
+to=".." - unazad na parent rutu
+
+<Link
+    to=".."
+    relative="path" - sad zna da ide unazas jedan deo rute
+
+ <Routes>
+    <Route path="/" element={<Layout />}>
+    <Route index element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route path="vans" element={<Vans />} />
+    <Route path="vans/:id" element={<VanDetail />} />
+    
+    <Route path="host" element={<HostLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="income" element={<Income />} />
+        <Route path="reviews" element={<Reviews />} />
+        <Route path="vans" element={<HostVans />} />
+        <Route path="vans/:id" element={<HostVanDetail />}>
+        <Route index element={<h2>Detailed info goes here</h2>} />
+        <Route path="pricing" element={<h2>Pricing goes here</h2>} />
+        <Route path="photos" element={<h2>Photos go here</h2>} />
+        </Route>
+    </Route>
+    </Route>
+</Routes> - primer malo kompleksnijih ruta
