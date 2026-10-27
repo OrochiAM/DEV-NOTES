@@ -570,8 +570,8 @@ Relativne rute
 bez /
 
 <Routes>
-    <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+    <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="vans" element={<Vans />} />
         <Route path="vans/:id" element={<VanDetail />} />
@@ -592,3 +592,17 @@ Nestovanje ruta samo kad nam treba novi ui.
     to="/about"
     className={({isActive}) => isActive ? "my-link" : null }
 >
+
+<NavLink
+    to="/host"
+    end - DA NE PRIMENI STIL AKO SE NALAZIMO NA CHILD RUTI
+    style={({ isActive }) => isActive ? activeStyles : null}
+>
+    Dashboard
+</NavLink>
+
+Link / Navlink takodje moze da ima relativnu putanju, vode ne rutu koja je zasnovana na stranici na kojoj je link
+
+Link na stranici income bez / ce da vodi na /host/income/novaruta
+
+to="." - relativna putanja na stranicu na kojoj je link renderovan
