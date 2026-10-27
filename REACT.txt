@@ -633,3 +633,8 @@ to=".." - unazad na parent rutu
     </Route>
     </Route>
 </Routes> - primer malo kompleksnijih ruta
+
+Outlet Context se koristi za deljenje propova izmedju outleta i komponenata u njemu.
+
+<Outlet context={[count, setCount]} />
+const [count, setCount] = useOutletContext();
