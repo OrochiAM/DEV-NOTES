@@ -638,3 +638,120 @@ Outlet Context se koristi za deljenje propova izmedju outleta i komponenata u nj
 
 <Outlet context={[count, setCount]} />
 const [count, setCount] = useOutletContext();
+
+Query/Search parametri
+
+U query parametrima moze da se cuva stanje aplikacije (ako refreshujemo stranicu da recimo ostane isti state)
+
+const [searchParams, setSearchParams] = useSearchParams()
+searchParams.get("type") - recimo query parametar type
+
+<Link to="?type=jedi">Jedi</Link> - kako search parametri preko linkova
+<Link to="?type=sith">Sith</Link>
+<Link to=".">No Filter</Link> - clear parametara
+
+<button onClick={() => setSearchParams("type=jedi")}>Jedi</button>
+<button onClick={() => setSearchParams("type=sith")}>Sith</button>
+<button onClick={() => setSearchParams("")}>Clear</button> - moze i ovako ali retko
+
+<button onClick={() => setSearchParams({type: "jedi"})}>Jedi</button>
+<button onClick={() => setSearchParams({type: "sith"})}>Sith</button>
+<button onClick={() => setSearchParams({})}>Clear</button> - ovo je cesce 
+
+function genNewSearchParamString(key, value) {
+    const sp = new URLSearchParams(searchParams)
+    if (value === null) {
+        sp.delete(key)
+    } else {
+        sp.set(key, value)
+    }
+    return `?${sp.toString()}`
+} - fja za postavljanje parametara bez da menja ostale 
+
+<Link to={genNewSearchParamString("type", "jedi")}>Jedi</Link>
+<Link to={genNewSearchParamString("type", "sith")}>Sith</Link>
+<Link to={genNewSearchParamString("type", null)}>Clear</Link>
+
+function handleFilterChange(key, value) {
+    setSearchParams(prevParams => {
+        if (value === null) {
+            prevParams.delete(key)
+        } else {
+            prevParams.set(key, value)
+        }
+        return prevParams
+    })
+} - isto samo objekti
+
+Link State (History State)
+
+<Link to={van.id} state={{ search: searchParams.toString() }}> - podaci koji se salju na linkovanu stranicu
+
+const location = useLocation() - ovako se kupi
+location.state - ovako se pristupa
+
+<Link
+    to={`../${location.state ? '?' + location.state.search : ''}`}
+    relative="path"
+    className="back-button"
+>&larr; <span>Back to all vans</span></Link> - moze da se prosledi search parametar i da se vrati sa istim filterom
+
+<Route path="*" element={<NotFound />} /> - 404 Stranica
+
+const [loading, setLoading] = React.useState(false)
+
+if (loading) {
+    return <h1>Loading...</h1>
+} - ovako loading
+
+async function loadVans() {
+    setLoading(true)
+    try {
+        const data = await getVans()
+        setVans(data)
+        
+    } catch(err) {
+        setError(err)
+    }
+    setLoading(false)
+} - ovako greske
+
+if (error) {
+    return <h1>There was an error: {error}</h1>
+}
+
+OVAKO MODERNO IDU RUTE
+const routesArray =  [
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "vans", element: <Vans /> },
+      { path: "vans/:id", element: <VanDetail /> },
+      {
+        path: "host",
+        element: <HostLayout />,
+        children: [
+          { index: true, element: <Dashboard /> },
+          { path: "income", element: <Income /> },
+          { path: "reviews", element: <Reviews /> },
+          { path: "vans", element: <HostVans /> },
+          {
+            path: "vans/:id",
+            element: <HostVanDetail />,
+            children: [
+              { index: true, element: <HostVanInfo /> },
+              { path: "pricing", element: <HostVanPricing /> },
+              { path: "photos", element: <HostVanPhotos /> }
+            ]
+          }
+        ]
+      },
+      { path: "*", element: <NotFound /> }
+    ]
+  }
+]
+
+const router = createBrowserRouter(routesArray)

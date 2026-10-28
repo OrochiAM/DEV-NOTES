@@ -115,6 +115,8 @@ return new Array(10)
     .fill(0)
     .map(() => Math.ceil(Math.random() * 6))
 
+location.state?.search || "" - NOVO OPTIONAL CHAINING
+
 OOP JS
 
 Objekti sa metodama
