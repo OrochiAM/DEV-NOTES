@@ -1,0 +1,81 @@
+Pise se u .ts fajlovima.
+
+Automatski detektuje tip.
+
+let myName = "Bob"
+
+moze i eksplicitno da se navede tip.
+let myName: string = "Bob"
+
+Primitive Data Types: string, number, boolean
+
+Custom tipovi.
+
+type Person = {
+    name: string
+    age: number
+    isStudent: boolean
+}
+
+let person1: Person = {
+    name: "Joe",
+    age: 42,
+    isStudent: true
+}
+
+Opcionalna svojstva:
+address?: Address
+
+Nizovi i tipovi
+let ages: number[]
+let people: Array<Person>
+
+Literal tipovi, tipovi koji podrzavaju samo odredjenu vrednost.
+
+const myName2 = "Bob"
+const myName2: "Bob" = "Bob" - isto
+
+Unions
+
+identifier: string | number
+type UserRole = "guest" | "member" | "admin"
+
+ima void klasika
+function addNewPizza(pizzaObj: Pizza): void
+
+postoji any tip
+let value: any - samo za privremeno testiranjes
+
+Utility tipovi
+
+type User = {
+    id: number
+    username: string
+    role: "member" | "contributor" | "admin"
+}
+
+type UpdatedUser = Partial<User> - tip gde je sve optional
+
+newUser: Omit<User, "id"> - bez id
+newUser: Omit<User, "id" | "user"> - ili user
+
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
+    const newPizza: Pizza = {
+        id: nextPizzaId++,
+        ...pizzaObj
+    }
+    menu.push(newPizza)
+    return newPizza
+}
+
+Generici <T> - kao i svuda
+
+function getLastItem<Type>(array: Type[]): Type | undefined {
+    return array[array.length - 1]
+}
+
+function addToArray<T>(array: T[], item: T): T[] {
+    array.push(item)
+    return array
+}
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
