@@ -79,3 +79,44 @@ function addToArray<T>(array: T[], item: T): T[] {
     return array
 }
 addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
+
+REACT
+
+useState type
+
+const [currentWord, setCurrentWord] = useState<string>(():string => getRandomWord())
+const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+
+
+Komponente type
+
+import type {JSX} from 'react'
+
+export default function Header():JSX.Element 
+
+Prop type
+
+ConfettiContainer({ isGameWon }:{isGameWon:boolean})
+
+Exportovanje typeova
+
+export type Language = 
+
+import type {Language} from '../languages'
+
+type LanguageChipsProps = {
+    languages: Language[],
+    wrongGuessCount: number
+}
+
+LanguageChips({ languages, wrongGuessCount }:LanguageChipsProps)
+
+Elementi u elementima
+
+const languageElements: JSX.Element[] = languages.map((lang: Language, index: number): JSX.Element
+
+Funkcije kao prop
+type NewGameButtonProps ={ 
+    isGameOver: boolean,
+    startNewGame: (name: string) => number
+}
