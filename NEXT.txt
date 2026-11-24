@@ -1,0 +1,15 @@
+Instalacija 
+
+npm i next@latest react@latest react-dom@latest
+
+
+Dodaju se skripte u package.json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  }
+}
