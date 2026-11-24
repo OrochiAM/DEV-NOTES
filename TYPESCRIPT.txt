@@ -1,0 +1,165 @@
+Pise se u .ts fajlovima.
+
+Automatski detektuje tip.
+
+let myName = "Bob"
+
+moze i eksplicitno da se navede tip.
+let myName: string = "Bob"
+
+Primitive Data Types: string, number, boolean
+
+Custom tipovi.
+
+type Person = {
+    name: string
+    age: number
+    isStudent: boolean
+}
+
+let person1: Person = {
+    name: "Joe",
+    age: 42,
+    isStudent: true
+}
+
+Opcionalna svojstva:
+address?: Address
+
+Nizovi i tipovi
+let ages: number[]
+let people: Array<Person>
+
+Literal tipovi, tipovi koji podrzavaju samo odredjenu vrednost.
+
+const myName2 = "Bob"
+const myName2: "Bob" = "Bob" - isto
+
+Unions
+
+identifier: string | number
+type UserRole = "guest" | "member" | "admin"
+
+ima void klasika
+function addNewPizza(pizzaObj: Pizza): void
+
+postoji any tip
+let value: any - samo za privremeno testiranjes
+
+Utility tipovi
+
+type User = {
+    id: number
+    username: string
+    role: "member" | "contributor" | "admin"
+}
+
+type UpdatedUser = Partial<User> - tip gde je sve optional
+
+newUser: Omit<User, "id"> - bez id
+newUser: Omit<User, "id" | "user"> - ili user
+
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
+    const newPizza: Pizza = {
+        id: nextPizzaId++,
+        ...pizzaObj
+    }
+    menu.push(newPizza)
+    return newPizza
+}
+
+Generici <T> - kao i svuda
+
+function getLastItem<Type>(array: Type[]): Type | undefined {
+    return array[array.length - 1]
+}
+
+function addToArray<T>(array: T[], item: T): T[] {
+    array.push(item)
+    return array
+}
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
+
+REACT
+
+useState type
+
+const [currentWord, setCurrentWord] = useState<string>(():string => getRandomWord())
+const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+
+
+Komponente type
+
+import type {JSX} from 'react'
+
+export default function Header():JSX.Element 
+
+Prop type
+
+ConfettiContainer({ isGameWon }:{isGameWon:boolean})
+
+Exportovanje typeova
+
+export type Language = 
+
+import type {Language} from '../languages'
+
+type LanguageChipsProps = {
+    languages: Language[],
+    wrongGuessCount: number
+}
+
+LanguageChips({ languages, wrongGuessCount }:LanguageChipsProps)
+
+Elementi u elementima
+
+const languageElements: JSX.Element[] = languages.map((lang: Language, index: number): JSX.Element
+
+Funkcije kao prop
+type NewGameButtonProps ={ 
+    isGameOver: boolean,
+    startNewGame: (name: string) => number
+}
+
+EXPRESS TYPE 
+
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  }
+} - tsconfig.js
+
+import type {Express} from 'express'
+const app:Express = express()
+
+app.listen(PORT, (): void =>{
+
+TS mora da se kompajluje za node
+
+npx tsc - kompajlovan js ide u dist folder
+
+"scripts": {
+    "build": "npx tsc",
+    "start": "npx tsc && node dist/index.js"
+}, - package.json
+
+import type {Express, Request, Response} from 'express'
+app.get('/', (req:Request, res:Response):void=> {
+
+cors
+
+npm i @types/cors
+
+Specificniji response
+res:Response<Pet[]>
+res:Response<{message:string}>
+
+Specificniji request
+app.get('/:id', (req:Request<{id:string}>, res:Response<Pet | {message: string}>):void=>{
+  const {id} = req.params
+  const pet = pets.find((pet: Pet): boolean => pet.id.toString() === id)
+
+  pet ? res.json(pet) : res.status(404).json({message: 'No pet with that ID.'})
+})

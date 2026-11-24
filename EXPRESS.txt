@@ -172,3 +172,35 @@ export function requireAuth(req, res, next) {
 
 Primena:
 app.use('/api/cart', requireAuth, cartRouter) - prvo odradi auth pa ide na next ako je sve kako treba
+
+Query params type
+req:Request<{}, unknown, {}, {species?:string}>
+
+ako ih ima vise
+
+type PetQueryParams = {
+  species?:string
+  adopted?: 'true' | 'false'
+}
+
+req:Request<{}, unknown, {}, PetQueryParams>
+
+Router type
+const petRouter:Router = express.Router()
+
+Middleware type
+
+import type {Request, Response, NextFunction} from 'express'
+
+export const validateNumericId = (
+  req:Request<{id:string}>, 
+  res:Response<{message:string}>, 
+  next:NextFunction
+) => {
+  const {id} = req.params
+  if (!/^\d+$/.test(id)) {
+    res.status(400).json({message: "Pet ID must be a number"})
+  } else {
+    next()
+  }
+}
