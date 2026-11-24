@@ -120,3 +120,47 @@ type NewGameButtonProps ={
     isGameOver: boolean,
     startNewGame: (name: string) => number
 }
+
+EXPRESS TYPE 
+
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  }
+} - tsconfig.js
+
+import type {Express} from 'express'
+const app:Express = express()
+
+app.listen(PORT, (): void =>{
+
+TS mora da se kompajluje za node
+
+npx tsc - kompajlovan js ide u dist folder
+
+"scripts": {
+    "build": "npx tsc",
+    "start": "npx tsc && node dist/index.js"
+}, - package.json
+
+import type {Express, Request, Response} from 'express'
+app.get('/', (req:Request, res:Response):void=> {
+
+cors
+
+npm i @types/cors
+
+Specificniji response
+res:Response<Pet[]>
+res:Response<{message:string}>
+
+Specificniji reques
+t
+app.get('/:id', (req:Request<{id:string}>, res:Response<Pet | {message: string}>):void=>{
+  const {id} = req.params
+  const pet = pets.find((pet: Pet): boolean => pet.id.toString() === id)
+
+  pet ? res.json(pet) : res.status(404).json({message: 'No pet with that ID.'})
+})
