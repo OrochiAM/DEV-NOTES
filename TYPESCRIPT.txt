@@ -156,8 +156,7 @@ Specificniji response
 res:Response<Pet[]>
 res:Response<{message:string}>
 
-Specificniji reques
-t
+Specificniji request
 app.get('/:id', (req:Request<{id:string}>, res:Response<Pet | {message: string}>):void=>{
   const {id} = req.params
   const pet = pets.find((pet: Pet): boolean => pet.id.toString() === id)
