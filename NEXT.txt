@@ -1,9 +1,7 @@
 Instalacija 
 
+Manuelno
 npm i next@latest react@latest react-dom@latest
-
-
-Dodaju se skripte u package.json
 {
   "scripts": {
     "dev": "next dev",
@@ -13,3 +11,17 @@ Dodaju se skripte u package.json
     "lint:fix": "eslint --fix"
   }
 }
+
+Automatski
+
+npx create-next-app@latest imeFoldera - ako se stavi . ide odmah u nadredjeni folder
+
+Dodaju se skripte u package.json
+
+Imamo app folder koji je root
+
+U njemu layout i page jsx stranice
+Layout mora da ima children
+
+Rute su zapravo folderi u app koji u sebi imaju page.jsx (file based routing)
+

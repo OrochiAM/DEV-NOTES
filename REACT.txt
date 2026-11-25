@@ -531,7 +531,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 </BrowserRouter> - samoobjasnjivo
 
 <Link to="/">Home</Link>
-<Link to="/about">Abo</Link> - link u routeru da ne refreshuje stranicu i gubi state.
+<Link to="/about">About</Link> - link u routeru da ne refreshuje stranicu i gubi state.
 - mora u browser routeru
 
 <Route path="/vans/:id" element={<VanDetail />} /> - route parametar
