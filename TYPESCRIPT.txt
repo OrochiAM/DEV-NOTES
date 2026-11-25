@@ -123,6 +123,9 @@ type NewGameButtonProps ={
 
 EXPRESS TYPE 
 
+npm install express
+npm install -D typescript tsx @types/express
+
 {
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
