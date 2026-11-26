@@ -41,7 +41,7 @@ const productsController = (req, res) => {
     res.json({data: 'products'})
 }
 
-apiRouter.get('/api/products', productsController)
+apiRouter.get('/products', productsController)
 
 app.use('/api', apiRouter)
 

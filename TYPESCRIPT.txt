@@ -87,7 +87,6 @@ useState type
 const [currentWord, setCurrentWord] = useState<string>(():string => getRandomWord())
 const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
-
 Komponente type
 
 import type {JSX} from 'react'

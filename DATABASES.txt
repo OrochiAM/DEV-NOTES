@@ -199,7 +199,6 @@ const params = ['Roswell']
 
 const abductions = await db.all(query, params)
 
-
 db.js (konekcija ka bazi)
 import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
