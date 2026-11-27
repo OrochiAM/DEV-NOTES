@@ -23,9 +23,11 @@ Imamo app folder koji je root
 U njemu layout i page jsx stranice
 Layout mora da ima children
 
+Ako stavimo folder koji nema page jsx, to je obican folder sa obicnim fajlovima, nije ruta.
+
 Rute su zapravo folderi u app koji u sebi imaju page.jsx (file based routing)
 
-FONTOVI I next
+FONTOVI I NEXT
 
 import { Albert_Sans, Montserrat_Alternates } from "next/font/google"
 
@@ -38,7 +40,7 @@ const montserratAlternates = Montserrat_Alternates({
   subsets: ["latin"],
   display: "swap",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat-alternates"
+  variable: "--font-montserrat-alternates" - moze var u css da se koristi
 })
 
 <body className={`${albertSans.className} ${montserratAlternates.variable}`}>
@@ -46,3 +48,82 @@ const montserratAlternates = Montserrat_Alternates({
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat-alternates);
 }
+
+SLIKE I NEXT
+
+<Image
+    src="/hero-image-square.png"
+    alt="PrintForge Community - A group of makers collaborating on 3D printing projects"
+    width={742}
+    height={742} - izvorna visina i sirina, ne na sajtu
+    className="absolute inset-0 w-full h-full object-cover rounded-lg"
+/> 
+- podrzavqa auto resize, lazy loading, nema layout shifta (da se pomere stvari kad se ucita slika)
+
+Importovanje
+import heroImage from "@/public/hero-image-square.png"
+
+<Image
+    src={heroImage}
+    alt="PrintForge Community - A group of makers collaborating on 3D printing projects"
+    className="absolute inset-0 w-full h-full object-cover rounded-lg"
+/>
+
+Ako je native img 
+
+<img
+    src={HeroImageSquare.src}
+[...]
+
+Linkovi
+
+Normalni linkovi refreshuju.
+
+Bolji nacin:
+
+import Link from "next/link"
+
+<ul>
+  <li><Link href="/">Home</Link></li>
+  <li><Link href="/about">About</Link></li>
+</ul>
+
+<Link href="/" prefetch={false}>Home</Link>
+- posto next fetchuje cim link dodje u viewport moze se isto ponasanje iskljuciti
+
+Link takodje odrzava react state.
+
+Client i Server Komponente
+
+Client: 
+Samo u browseru se runuje kod.
+Startuje fetch request tek kad se mountuju komponente.
+Mora da se koristi useEffect i useState.
+
+Server: 
+Kod se runuje na serveru.
+Fetchovanje moze pre rendera da se izvrsi.
+Nepotrebni useEffect i useState.
+
+Primer:
+export default async function PostsPage() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+  const data = await res.json()
+  return (
+    <pre>
+      {JSON.stringify(data, null, 2)}
+    </pre>
+  )
+}
+
+Dinamicke Rute
+
+<Link href={`/posts/${post.id}`}>
+
+Za rute se pravi novi folder po pravilu [naziv parametra rute] npr [id]
+Posle klasika page.jsx
+
+export default async function PostDetail({ params }) {
+  const { id } = await params 
+  
+Ovako se kupi parametar.

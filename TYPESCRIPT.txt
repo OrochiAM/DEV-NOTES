@@ -110,6 +110,12 @@ type LanguageChipsProps = {
 
 LanguageChips({ languages, wrongGuessCount }:LanguageChipsProps)
 
+Readonly<{
+  children: React.ReactNode;
+}> - tip za children
+
+export default function RootLayout({ children }: RootLayoutProps)
+
 Elementi u elementima
 
 const languageElements: JSX.Element[] = languages.map((lang: Language, index: number): JSX.Element
